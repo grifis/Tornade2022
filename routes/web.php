@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
+Route::controller(PostController::class)->prefix('posts')->middleware('auth')->group(function(){
+    Route::get('/', 'index')->name('posts.index');
+    Route::get('/create', 'create')->name('posts.create');
+    Route::post('/store', 'store');
+});
+
+
+//以下テスト用
 Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),

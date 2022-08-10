@@ -38,9 +38,18 @@ export default function Login({ status, canResetPassword }) {
 
             <ValidationErrors errors={errors} />
 
+            <div className='text-right'>
+                <Link
+                    href={'/register'}
+                    className="underline text-sm text-gray-600 hover:text-gray-900"
+                >
+                    新規登録はこちら
+                </Link>
+            </div>
+
             <form onSubmit={submit}>
                 <div>
-                    <Label forInput="email" value="Email" />
+                    <Label forInput="email" value="メールアドレス" />
 
                     <Input
                         type="text"
@@ -54,7 +63,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <Label forInput="password" value="Password" />
+                    <Label forInput="password" value="パスワード" />
 
                     <Input
                         type="password"
@@ -70,7 +79,7 @@ export default function Login({ status, canResetPassword }) {
                     <label className="flex items-center">
                         <Checkbox name="remember" value={data.remember} handleChange={onHandleChange} />
 
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                        <span className="ml-2 text-sm text-gray-600">ログインを記憶</span>
                     </label>
                 </div>
 
@@ -80,12 +89,12 @@ export default function Login({ status, canResetPassword }) {
                             href={route('password.request')}
                             className="underline text-sm text-gray-600 hover:text-gray-900"
                         >
-                            Forgot your password?
+                            パスワードを忘れた方はこちら
                         </Link>
                     )}
 
                     <Button className="ml-4" processing={processing}>
-                        Log in
+                        ログイン
                     </Button>
                 </div>
             </form>
