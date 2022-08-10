@@ -42,7 +42,7 @@ Route::get('/', function() {
 	return Inertia::render('test', [
 		'greeting' => 'Hello'
 	]);
-})->name('test');
+})->name('test')->middleware('auth');
 
 Route::get('/about', function() {
 	return Inertia::render('about');
