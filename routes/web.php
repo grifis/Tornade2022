@@ -18,9 +18,13 @@ use App\Http\Controllers\PostController;
 */
 
 Route::controller(PostController::class)->prefix('posts')->middleware('auth')->group(function(){
-    Route::get('/', 'index')->name('posts.index');
     Route::get('/create', 'create')->name('posts.create');
     Route::post('/store', 'store');
+});
+
+Route::controller(PostController::class)->prefix('posts')->group(function(){
+    Route::get('/', 'index')->name('posts.index');
+    Route::get('/{post}', 'show');
 });
 
 
@@ -39,10 +43,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/', function() {
-	return Inertia::render('test', [
-		'greeting' => 'Hello'
-	]);
-})->name('test')->middleware('auth');
+    return redirect()->route('posts.index');
+//	return Inertia::render('test', [
+//		'greeting' => 'Hello'
+//	]);
+})->name('test');
 
 Route::get('/about', function() {
 	return Inertia::render('about');
