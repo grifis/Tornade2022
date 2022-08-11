@@ -20,11 +20,11 @@ use App\Http\Controllers\PostController;
 Route::controller(PostController::class)->prefix('posts')->middleware('auth')->group(function(){
     Route::get('/create', 'create')->name('posts.create');
     Route::post('/store', 'store');
+    Route::get('/{post}', 'show');
 });
 
 Route::controller(PostController::class)->prefix('posts')->group(function(){
     Route::get('/', 'index')->name('posts.index');
-    Route::get('/{post}', 'show');
 });
 
 
