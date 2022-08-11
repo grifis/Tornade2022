@@ -58,12 +58,16 @@ const Header = () => {
                 Revenge!!
             </a>
             {/* ロゴここまで */}
+
+            {/* スマホ版検索のロゴここから */}
             <div className="sm:hidden ml-auto mr-6">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
             </div>
+            {/* スマホ版検索のロゴここまで */}
 
+            {/* pc版検索ここから */}
             <form className="hidden sm:flex items-center ml-auto mr-8">
                 <label htmlFor="simple-search" className="sr-only">Search</label>
                 <div className="relative w-full">
@@ -77,7 +81,7 @@ const Header = () => {
                     </div>
                     <input type="text" id="simple-search"
                            className="text-sm rounded-lg block w-full pl-10 p-2.5 outline outline-red-500"
-                           placeholder="キーワードで検索a" required />
+                           placeholder="キーワードで検索" required />
                 </div>
                 <button type="submit"
                         className="p-2.5 text-sm font-medium text-white bg-red-400 rounded-lg border border-red-700 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
@@ -89,6 +93,7 @@ const Header = () => {
                     <span className="sr-only">Search</span>
                 </button>
             </form>
+            {/* pc版検索ここまで */}
 
             {/* ボタンここから */}
             { auth.user ? logined : notLogined}
