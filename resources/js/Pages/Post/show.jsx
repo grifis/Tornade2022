@@ -7,7 +7,7 @@ const Show = (props) => {
         <div className="bg-white py-6 sm:py-8 lg:py-12">
             <div className="max-w-screen-md px-4 md:px-8 mx-auto">
                 <Link
-                    href={route("posts.create")}
+                    href={route("posts.index")}
                     className="text-blue-600"
                 >
                     一覧へ戻る
