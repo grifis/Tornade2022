@@ -22,7 +22,7 @@ class EventController extends Controller
         $event = Event::with(['user', 'operators'])->find($event->id);
         $operators_id = [$event->user_id];
         foreach($event->operators as $operator){
-            array_push($operators_id, $operator->id);
+            array_push($operators_id, $operator->user_id);
         }
         return Inertia::render('Event/show', [
             'event' => $event,
