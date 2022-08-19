@@ -42,8 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts()
+    public function events()
     {
-        return $this->hasMany('App\Models\Post');
+        return $this->hasMany('App\Models\Event');
     }
 }

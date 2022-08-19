@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Venue extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'address',
+        'description',
+        'owner_id',
+    ];
+
+    public function owner()
+    {
+        return $this->belongsTo('App\Models\Owner');
+    }
 }

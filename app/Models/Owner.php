@@ -42,4 +42,9 @@ class Owner extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function venues()
+    {
+        return $this->hasMany('App\Models\Venue');
+    }
+
 }

@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\VenueController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,16 @@ use App\Http\Controllers\PostController;
 |
 */
 //全ユーザーが見れるルーティング
+Route::controller(EventController::class)->prefix('events')->group(function(){
+    Route::get('/', 'index')->name('events.index');
+});
+
 Route::controller(PostController::class)->prefix('posts')->group(function(){
     Route::get('/', 'index')->name('posts.index');
+});
+
+Route::controller(VenueController::class)->prefix('venues')->group(function(){
+    Route::get('/', 'index')->name('venues.index');
 });
 
 //学生ユーザーのみのルーティング
@@ -28,10 +38,16 @@ Route::controller(PostController::class)->prefix('posts')->middleware('auth')->g
     Route::get('/{post}', 'show');
 });
 
+Route::controller(EventController::class)->prefix('events')->middleware('auth')->group(function(){
+    Route::get('/create', 'create')->name('events.create');
+    Route::post('/store', 'store')->name('events.store');
+    Route::get('/{event}', 'show')->name('events.show');
+});
+
 //開催地ユーザーのみのルーティング
-Route::controller(PostController::class)->middleware('auth:owner')->group(function(){
-    Route::get('/create', 'create')->name('posts.create');
-    Route::post('/store', 'store');
+Route::controller(VenueController::class)->middleware('auth:owner')->group(function(){
+    Route::get('/venues/create', 'create')->name('venue.create');
+    Route::post('/venues/store', 'store');
 });
 
 

@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('venues', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); //開催地名
             $table->string('address'); //住所
+            $table->string('description'); //説明
             $table->integer('owner_id')->unsigned();
             $table->timestamps();
         });

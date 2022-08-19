@@ -4,23 +4,34 @@ import { Link } from "@inertiajs/inertia-react";
 const Navigation = () => {
 
     const { url } = usePage();
+    const { auth } = usePage().props;
     const tabStyle = "text-gray-600 hover:text-red-500 active:text-indigo-700 text-lg font-semibold transition duration-100 ";
     const tabFocusStyle = `inline-flex items-center text-red-500 text-lg font-semibold gap-1 border-b-2 border-red-500`;
 
+    const eventCreate = (
+        <Link href="/events/create"
+              className={url === "/events/create" ? tabFocusStyle : tabStyle}>
+            イベントを考える
+        </Link>
+    );
+    const venueCreate = (
+        <Link href="/venues/create"
+              className={url === "/venues/create" ? tabFocusStyle : tabStyle}>
+            開催地を紹介する
+        </Link>
+    );
     return (
             <nav className="flex sm:gap-12 gap-6 border-b-2 border-grey-200">
-                <Link href="/posts"
-                      className={url === "/posts" ? tabFocusStyle : tabStyle}>
-                    ホーム
+                <Link href="/events"
+                      className={url === "/events" ? tabFocusStyle : tabStyle}>
+                    イベント一覧
                 </Link>
-                <Link href="/posts/create"
-                      className={url === "/posts/create" ? tabFocusStyle : tabStyle}>
-                    投稿する
+                <Link href="/venues"
+                      className={url === "/venues" ? tabFocusStyle : tabStyle}>
+                    開催地一覧
                 </Link>
-                <Link href="#"
-                      className={url === "#" ? tabFocusStyle : tabStyle}>
-                    何か
-                </Link>
+                {!auth.owner && eventCreate}
+                {!auth.user && venueCreate}
                 <Link href="#"
                       className={url === "#" ? tabFocusStyle : tabStyle}>
                     何か

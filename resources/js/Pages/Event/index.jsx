@@ -6,7 +6,7 @@ const Index = (props) => {
         {/* text - start */}
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-8 mt-8 mx-4 sm:mx-2">
-            {props.venues.map((venue) => (
+            {props.events.map((event) => (
                 <div className="flex flex-col bg-white border rounded-lg overflow-hidden">
                     <div className="flex flex-col flex-1 p-4 sm:p-6">
                         <div className="flex justify-between items-end">
@@ -19,19 +19,23 @@ const Index = (props) => {
                                 </div>
 
                                 <div>
-                                    <span className="block text-gray-800">{venue.owner.name}</span>
-                                    <span className="block text-gray-400 text-sm">{venue.created_at.substr(0, 10)}</span>
+                                    <span className="block text-gray-800">{event.user.name}</span>
+                                    <span className="block text-gray-400 text-sm">{event.created_at.substr(0, 10)}</span>
                                 </div>
                             </div>
 
                         </div>
 
                         <h2 className="text-gray-800 text-lg font-semibold mb-2">
-                            <Link href={`/posts/${venue.id}`}
-                                  className="hover:text-indigo-500 active:text-indigo-600 transition duration-100">開催地名：{venue.name}</Link>
+                            <Link href={`/events/${event.id}`}
+                                  className="hover:text-indigo-500 active:text-indigo-600 transition duration-100">{event.title}</Link>
                         </h2>
 
-                        <Link href={`/posts/${venue.id}`} className="text-gray-500 mb-4">住所：{venue.address.substr(0, 30)}...続きを読む</Link>
+                        <h2 className="text-gray-800 text-lg font-semibold mb-2">
+                            状態：{event.status}
+                        </h2>
+
+                        <Link href={`/events/${event.id}`} className="text-gray-500 mb-4">{event.description.substr(0, 30)}...続きを読む</Link>
                         <div className='flex'>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
