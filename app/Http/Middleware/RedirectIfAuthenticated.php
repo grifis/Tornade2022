@@ -23,6 +23,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                if($guard == 'owner') return redirect('/posts/create');
                 return redirect(RouteServiceProvider::HOME);
             }
         }

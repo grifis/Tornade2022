@@ -17,7 +17,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::controller(PostController::class)->prefix('posts')->middleware('auth')->group(function(){
+Route::controller(PostController::class)->prefix('posts')->middleware('auth:owner')->middleware('auth')->group(function(){
     Route::get('/create', 'create')->name('posts.create');
     Route::post('/store', 'store');
     Route::get('/{post}', 'show');
@@ -56,3 +56,6 @@ Route::get('/about', function() {
 Route::resource('/user', UserController::class);
 
 require __DIR__.'/auth.php';
+Route::prefix('owner')->name('owner.')->group(function(){
+    require __DIR__.'/owner.php';
+});
