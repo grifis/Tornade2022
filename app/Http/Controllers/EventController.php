@@ -54,7 +54,7 @@ class EventController extends Controller
         $operator->event_id = $event_id;
         $operator->user_id = Auth::user()->id;
         $operator->save();
-        return redirect()->route('/events/messages/' . $event_id);
+        return redirect('/events/messages/' . $event_id);
     }
 
     public function operator_messages()
