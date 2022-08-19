@@ -32,15 +32,15 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <Guest>
-            <Head title="Log in" />
+            <Head title="ログイン" />
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <ValidationErrors errors={errors} />
-
+            <p>開催地の方向けログイン画面</p>
             <div className='text-right'>
                 <Link
-                    href={'owner/register'}
+                    href={route('owner.register')}
                     className="underline text-sm text-gray-600 hover:text-gray-900"
                 >
                     新規登録はこちら

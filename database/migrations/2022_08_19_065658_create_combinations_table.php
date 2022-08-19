@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('combinations', function (Blueprint $table) {
             $table->id();
+            $table->integer('event_id')->unsigned();
+            $table->integer('venue_id')->unsigned();
             $table->timestamps();
         });
     }

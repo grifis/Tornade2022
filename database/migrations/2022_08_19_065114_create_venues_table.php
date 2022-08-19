@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('venues', function (Blueprint $table) {
             $table->id();
+            $table->string('address'); //住所
+            $table->integer('owner_id')->unsigned();
             $table->timestamps();
         });
     }

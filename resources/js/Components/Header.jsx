@@ -9,12 +9,14 @@ const Header = () => {
 
     const { url, component } = usePage();
     const { auth } = usePage().props;
-    const tabStyle = "text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-lg font-semibold transition duration-100";
-    const tabFocusStyle = `inline-flex items-center text-indigo-500 text-lg font-semibold gap-1`;
 
     function onSubmit(e) {
         e.preventDefault();
-        post(route("logout"));
+        if(auth.user){
+            post(route("logout"));
+        } else {
+            post(route("owner.logout"))
+        }
     }
 
     const logined = (
@@ -43,7 +45,6 @@ const Header = () => {
         </div>
     );
 
-    console.log(auth);
     return (
         <header className="flex justify-between items-center py-4 md:py-8">
             {/* ロゴここから */}
@@ -74,9 +75,9 @@ const Header = () => {
                     <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                         <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
                              viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
+                            <path fillRule="evenodd"
                                   d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                  clip-rule="evenodd"></path>
+                                  clipRule="evenodd"></path>
                         </svg>
                     </div>
                     <input type="text" id="simple-search"
@@ -87,7 +88,7 @@ const Header = () => {
                         className="p-2.5 text-sm font-medium text-white bg-red-400 rounded-lg border border-red-700 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                          xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                     <span className="sr-only">Search</span>
@@ -96,7 +97,7 @@ const Header = () => {
             {/* pc版検索ここまで */}
 
             {/* ボタンここから */}
-            { auth.user ? logined : notLogined}
+            { (auth.user || auth.owner) ? logined : notLogined}
 
             {/*<button type="button"*/}
             {/*        className="inline-flex items-center lg:hidden bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold rounded-lg gap-2 px-2.5 py-2">*/}

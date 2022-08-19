@@ -35,7 +35,7 @@ export default function Register() {
             <Head title="Register" />
 
             <ValidationErrors errors={errors} />
-
+            <p>開催地の方向け登録画面</p>
             <form onSubmit={submit}>
                 <div>
                     <Label forInput="name" value="名前" />

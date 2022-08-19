@@ -16,15 +16,22 @@ use App\Http\Controllers\PostController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//全ユーザーが見れるルーティング
+Route::controller(PostController::class)->prefix('posts')->group(function(){
+    Route::get('/', 'index')->name('posts.index');
+});
 
-Route::controller(PostController::class)->prefix('posts')->middleware('auth:owner')->middleware('auth')->group(function(){
+//学生ユーザーのみのルーティング
+Route::controller(PostController::class)->prefix('posts')->middleware('auth')->group(function(){
     Route::get('/create', 'create')->name('posts.create');
     Route::post('/store', 'store');
     Route::get('/{post}', 'show');
 });
 
-Route::controller(PostController::class)->prefix('posts')->group(function(){
-    Route::get('/', 'index')->name('posts.index');
+//開催地ユーザーのみのルーティング
+Route::controller(PostController::class)->middleware('auth:owner')->group(function(){
+    Route::get('/create', 'create')->name('posts.create');
+    Route::post('/store', 'store');
 });
 
 
