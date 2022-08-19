@@ -16,10 +16,11 @@ class VenueController extends Controller
         ]);
     }
 
-    public function show(Post $post)
+    public function show(Venue $venue)
     {
-        return Inertia::render('Post/show', [
-            'post' => $post
+        $venue = Venue::with(['owner'])->find($venue->id);
+        return Inertia::render('Venue/show', [
+            'venue' => $venue
         ]);
     }
 
@@ -33,12 +34,13 @@ class VenueController extends Controller
         $validated = $request->validate([   //バリデーション適用後の配列
             'name' => ['required', 'max:50'],
             'address' => ['required'],
+            'description' => ['required'],
         ]);
 
         $owner = Auth::guard('owner')->user();   //ログインしているownerユーザーを取得
         $validated += ['owner_id' => $owner->id];   //owner_idを配列に加える
 
         Venue::create($validated);
-        return redirect()->route('posts.index');
+        return redirect()->route('venues.index');
     }
 }

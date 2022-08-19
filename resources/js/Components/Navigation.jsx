@@ -33,9 +33,10 @@ const Navigation = () => {
                 </Link>
                 {!auth.owner && eventCreate}
                 {!auth.user && venueCreate}
+                {console.log(auth)}
                 {auth.user && (
                     <Link href={`/users/${auth.user.id}`}
-                          className={url === "#" ? tabFocusStyle : tabStyle}>
+                          className={url === `/users/${auth.user.id}` ? tabFocusStyle : tabStyle}>
                         プロフィール
                     </Link>
                 )}

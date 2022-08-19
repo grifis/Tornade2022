@@ -6,6 +6,7 @@ const Create = () => {
     const { data, setData, post, errors, processing } = useForm({
         name: "",
         address: "",
+        description: "",
     });
 
     function onSubmit(e) {
@@ -41,6 +42,17 @@ const Create = () => {
                                 {data.address}
                             </textarea>
                             {errors.address && <div className='text-red-600'>{errors.address}</div>}
+                        </div>
+                        <div>
+                            <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">説明</label>
+                            <textarea
+                                id="description"
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                onChange={(e) => {setData('description', e.target.value)}}
+                            >
+                                {data.description}
+                            </textarea>
+                            {errors.description && <div className='text-red-600'>{errors.description}</div>}
                         </div>
 
                         <button

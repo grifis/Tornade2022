@@ -27,11 +27,11 @@ const Index = (props) => {
                         </div>
 
                         <h2 className="text-gray-800 text-lg font-semibold mb-2">
-                            <Link href={`/posts/${venue.id}`}
+                            <Link href={`/venues/${venue.id}`}
                                   className="hover:text-indigo-500 active:text-indigo-600 transition duration-100">開催地名：{venue.name}</Link>
                         </h2>
 
-                        <Link href={`/posts/${venue.id}`} className="text-gray-500 mb-4">住所：{venue.address.substr(0, 30)}...続きを読む</Link>
+                        <Link href={`/venues/${venue.id}`} className="text-gray-500 mb-4">詳細：{venue.description.substr(0, 30)}...続きを読む</Link>
                         <div className='flex'>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />

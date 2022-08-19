@@ -51,8 +51,9 @@ Route::controller(groupMessageController::class)->middleware('auth')->group(func
 
 //開催地ユーザーのみのルーティング
 Route::controller(VenueController::class)->middleware('auth:owner')->group(function(){
-    Route::get('/venues/create', 'create')->name('venue.create');
+    Route::get('/venues/create', 'create')->name('venues.create');
     Route::post('/venues/store', 'store');
+    Route::get('/venues/{venue}', 'show')->name('events.show');
 });
 
 
