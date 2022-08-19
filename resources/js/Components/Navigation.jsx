@@ -20,6 +20,7 @@ const Navigation = () => {
             開催地を紹介する
         </Link>
     );
+
     return (
             <nav className="flex sm:gap-12 gap-6 border-b-2 border-grey-200">
                 <Link href="/events"
@@ -32,10 +33,12 @@ const Navigation = () => {
                 </Link>
                 {!auth.owner && eventCreate}
                 {!auth.user && venueCreate}
-                <Link href="#"
-                      className={url === "#" ? tabFocusStyle : tabStyle}>
-                    何か
-                </Link>
+                {auth.user && (
+                    <Link href={`/users/${auth.user.id}`}
+                          className={url === "#" ? tabFocusStyle : tabStyle}>
+                        プロフィール
+                    </Link>
+                )}
             </nav>
     );
 

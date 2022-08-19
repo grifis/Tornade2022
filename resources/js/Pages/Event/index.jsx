@@ -19,7 +19,7 @@ const Index = (props) => {
                                 </div>
 
                                 <div>
-                                    <span className="block text-gray-800">{event.user.name}</span>
+                                    <Link href={`/users/${event.user.id}`} className="block text-gray-800">{event.user.name}</Link>
                                     <span className="block text-gray-400 text-sm">{event.created_at.substr(0, 10)}</span>
                                 </div>
                             </div>

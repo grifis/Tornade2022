@@ -46,4 +46,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Event');
     }
+
+    public function operators()
+    {
+        return $this->hasMany('App\Models\Operator');
+    }
+
+    public function groupMessages()
+    {
+        return $this->hasMany('App\Models\GroupMessage');
+    }
 }

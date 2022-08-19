@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Operator extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'event_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function event()
+    {
+        return $this->belongsTo('App\Models\Event');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Operator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -16,10 +17,16 @@ class EventController extends Controller
         ]);
     }
 
-    public function show(Event $event)
+    public function show(Event $event, Operator $operator)
     {
+        $event = Event::with(['user', 'operators'])->find($event->id);
+        $operators_id = [$event->user_id];
+        foreach($event->operators as $operator){
+            array_push($operators_id, $operator->id);
+        }
         return Inertia::render('Event/show', [
-            'event' => $event
+            'event' => $event,
+            'operatorsId' => $operators_id
         ]);
     }
 
@@ -40,5 +47,18 @@ class EventController extends Controller
 
         Event::create($validated);
         return redirect()->route('events.index');
+    }
+
+    public function operator_join($event_id, Operator $operator)
+    {
+        $operator->event_id = $event_id;
+        $operator->user_id = Auth::user()->id;
+        $operator->save();
+        return redirect()->route('events.index');
+    }
+
+    public function operator_messages()
+    {
+        return Inertia::render('');
     }
 }

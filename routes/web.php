@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\groupMessageController;
 use App\Http\Controllers\VenueController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -23,25 +24,29 @@ Route::controller(EventController::class)->prefix('events')->group(function(){
     Route::get('/', 'index')->name('events.index');
 });
 
-Route::controller(PostController::class)->prefix('posts')->group(function(){
-    Route::get('/', 'index')->name('posts.index');
-});
-
 Route::controller(VenueController::class)->prefix('venues')->group(function(){
     Route::get('/', 'index')->name('venues.index');
 });
 
-//学生ユーザーのみのルーティング
-Route::controller(PostController::class)->prefix('posts')->middleware('auth')->group(function(){
-    Route::get('/create', 'create')->name('posts.create');
-    Route::post('/store', 'store');
-    Route::get('/{post}', 'show');
+Route::controller(UserController::class)->group(function(){
+    Route::get('/users/{user}','show')->name('users.show');
 });
 
-Route::controller(EventController::class)->prefix('events')->middleware('auth')->group(function(){
-    Route::get('/create', 'create')->name('events.create');
-    Route::post('/store', 'store')->name('events.store');
-    Route::get('/{event}', 'show')->name('events.show');
+//学生ユーザーのみのルーティング
+Route::controller(EventController::class)->middleware('auth')->group(function(){
+    //イベントに関するルーティング
+    Route::prefix('events')->group(function (){
+        Route::get('/create', 'create')->name('events.create');
+        Route::post('/store', 'store')->name('events.store');
+        Route::get('/{event}', 'show')->name('events.show');
+        Route::post('/operator/{event_id}', 'operator_join')->name('events.operator_join');
+        Route::get('/operator/messages', 'operator_messages')->name('events.operator_messages');
+    });
+});
+
+Route::controller(groupMessageController::class)->middleware('auth')->group(function(){
+    Route::get('/events/messages/{event}', 'index')->name('groupMessage.index');
+    Route::post('/events/messages/store','store')->name('groupMessage.store');
 });
 
 //開催地ユーザーのみのルーティング
@@ -66,7 +71,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/', function() {
-    return redirect()->route('posts.index');
+    return redirect()->route('events.index');
 //	return Inertia::render('test', [
 //		'greeting' => 'Hello'
 //	]);
@@ -76,7 +81,7 @@ Route::get('/about', function() {
 	return Inertia::render('about');
 })->name('about');
 
-Route::resource('/user', UserController::class);
+//Route::resource('/user', UserController::class);
 
 require __DIR__.'/auth.php';
 Route::prefix('owner')->name('owner.')->group(function(){
