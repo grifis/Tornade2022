@@ -19,18 +19,6 @@ use App\Http\Controllers\EventController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//全ユーザーが見れるルーティング
-Route::controller(EventController::class)->prefix('events')->group(function(){
-    Route::get('/', 'index')->name('events.index');
-});
-
-Route::controller(VenueController::class)->prefix('venues')->group(function(){
-    Route::get('/', 'index')->name('venues.index');
-});
-
-Route::controller(UserController::class)->group(function(){
-    Route::get('/users/{user}','show')->name('users.show');
-});
 
 //学生ユーザーのみのルーティング
 Route::controller(EventController::class)->middleware('auth')->group(function(){
@@ -38,10 +26,14 @@ Route::controller(EventController::class)->middleware('auth')->group(function(){
     Route::prefix('events')->group(function (){
         Route::get('/create', 'create')->name('events.create');
         Route::post('/store', 'store')->name('events.store');
-        Route::get('/{event}', 'show')->name('events.show');
         Route::post('/operator/{event_id}', 'operator_join')->name('events.operator_join');
         Route::get('/operator/messages', 'operator_messages')->name('events.operator_messages');
     });
+});
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/users/edit','edit')->name('users.edit');
+    Route::put('/user/edit', 'update')->name('user.update');
 });
 
 Route::controller(groupMessageController::class)->middleware('auth')->group(function(){
@@ -53,7 +45,21 @@ Route::controller(groupMessageController::class)->middleware('auth')->group(func
 Route::controller(VenueController::class)->middleware('auth:owner')->group(function(){
     Route::get('/venues/create', 'create')->name('venues.create');
     Route::post('/venues/store', 'store');
-    Route::get('/venues/{venue}', 'show')->name('events.show');
+});
+
+//全ユーザーが見れるルーティング
+Route::controller(EventController::class)->prefix('events')->group(function(){
+    Route::get('/', 'index')->name('events.index');
+    Route::get('/{event}', 'show')->name('events.show');
+});
+
+Route::controller(VenueController::class)->prefix('venues')->group(function(){
+    Route::get('/', 'index')->name('venues.index');
+    Route::get('/{venue}', 'show')->name('events.show');
+});
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/users/{user}','show')->name('users.show');
 });
 
 

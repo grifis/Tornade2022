@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\User;
 
@@ -36,5 +37,21 @@ class UserController extends Controller
 
         User::create($validated);
         return redirect()->route('user.index');
+    }
+
+    public function edit()
+    {
+        return Inertia::render('User/edit');
+    }
+
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'max:50'],
+        ]);
+
+        $user = Auth::user();
+        $user->fill($validated)->save();
+        return redirect('/users/' . $user->id);
     }
 }

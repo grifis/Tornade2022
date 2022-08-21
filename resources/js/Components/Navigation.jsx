@@ -15,8 +15,8 @@ const Navigation = () => {
         </Link>
     );
     const venueCreate = (
-        <Link href="/venues/create"
-              className={url === "/venues/create" ? tabFocusStyle : tabStyle}>
+        <Link href='/venues/create'
+              className={url === '/venues/create' ? tabFocusStyle : tabStyle}>
             開催地を紹介する
         </Link>
     );
@@ -33,7 +33,6 @@ const Navigation = () => {
                 </Link>
                 {!auth.owner && eventCreate}
                 {!auth.user && venueCreate}
-                {console.log(auth)}
                 {auth.user && (
                     <Link href={`/users/${auth.user.id}`}
                           className={url === `/users/${auth.user.id}` ? tabFocusStyle : tabStyle}>

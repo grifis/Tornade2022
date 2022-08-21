@@ -38,7 +38,7 @@ const Show = (props) => {
                 <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold mb-4 md:mb-6 text-center">状態：{event.status}</h1>
                 <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold mb-4 md:mb-6 text-center">企画者：{event.user.name}</h1>
                 <div className='text-center'>
-                    {operatorsId.includes(auth.user.id) ? joined : unjoined}
+                    {operatorsId.includes(auth.user?.id) ? joined : unjoined}
                 </div>
             </div>
         </div>
