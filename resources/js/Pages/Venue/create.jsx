@@ -1,17 +1,35 @@
-import { Head, useForm } from "@inertiajs/inertia-react";
-import { Link } from "@inertiajs/inertia-react";
+import { Inertia } from '@inertiajs/inertia'
+import {Head, useForm, usePage} from "@inertiajs/inertia-react";
 import Base from "@/Layouts/Base";
+import {LoadScript} from '@react-google-maps/api';
 
 const Create = () => {
-    const { data, setData, post, errors, processing } = useForm({
+    const { data, setData, post, errors, processing, transform } = useForm({
         name: "",
         address: "",
         description: "",
+        lat: '',
+        lng: '',
     });
+    const { googleApiKey } = usePage().props;
 
-    function onSubmit(e) {
+    async function onSubmit(e) {
         e.preventDefault();
-        post("/venues/store");
+        //入力された住所の緯度経度を取得
+        let lng = '';
+        let lat = '';
+        const geocoder = new window.google.maps.Geocoder();
+        await geocoder.geocode({ address: data.address }, (results, status) => {
+            if (status === 'OK') {
+                lng = results[0].geometry.location.lng();
+                lat = results[0].geometry.location.lat();
+            }
+        });
+        Inertia.post("/venues/store", {
+            ...data,
+            lat: lat,
+            lng: lng,
+        });
     }
 
     return (
@@ -41,6 +59,8 @@ const Create = () => {
                             >
                                 {data.address}
                             </textarea>
+                            <LoadScript googleMapsApiKey={`${googleApiKey}`}>
+                            </LoadScript>
                             {errors.address && <div className='text-red-600'>{errors.address}</div>}
                         </div>
                         <div>

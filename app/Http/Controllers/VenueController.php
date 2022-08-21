@@ -35,6 +35,8 @@ class VenueController extends Controller
             'name' => ['required', 'max:50'],
             'address' => ['required'],
             'description' => ['required'],
+            'lng' => ['required'],
+            'lat' => ['required'],
         ]);
 
         $owner = Auth::guard('owner')->user();   //ログインしているownerユーザーを取得

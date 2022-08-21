@@ -46,6 +46,7 @@ class HandleInertiaRequests extends Middleware
                 ]);
             },
             'appName' => config('app.name'),
+            'googleApiKey' => config('googleapi.google_api_key')
         ],
         );
     }

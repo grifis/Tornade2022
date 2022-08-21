@@ -1,8 +1,17 @@
 import {Link, usePage} from "@inertiajs/inertia-react";
 import Base from "@/Layouts/Base";
+import React from 'react';
+import { LoadScript, GoogleMap } from '@react-google-maps/api';
 
 const Show = (props) => {
+    const { googleApiKey } = usePage().props;
     const {venue} = props;
+    const containerStyle = {
+        width: "400px",
+        height: "400px",
+    };
+
+
 
     return <>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
@@ -18,6 +27,19 @@ const Show = (props) => {
                 <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold mb-4 md:mb-6 text-center">詳細：{venue.description}</h1>
                 <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold mb-4 md:mb-6 text-center">運営団体：{venue.owner.name}</h1>
             </div>
+        </div>
+        <div>
+            <LoadScript googleMapsApiKey={`${googleApiKey}`} >
+                <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={{
+                        lat: Number(venue.lat),
+                        lng: Number(venue.lng),
+                    }}
+                    zoom={17}
+                ></GoogleMap>
+                {console.log(venue)}
+            </LoadScript>
         </div>
     </>;
 };

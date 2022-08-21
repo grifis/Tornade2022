@@ -14,6 +14,8 @@ class Venue extends Model
         'address',
         'description',
         'owner_id',
+        'lat',
+        'lng',
     ];
 
     public function owner()
