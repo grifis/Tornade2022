@@ -33,7 +33,7 @@ Route::controller(EventController::class)->middleware('auth')->group(function(){
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/users/edit','edit')->name('users.edit');
-    Route::put('/user/edit', 'update')->name('user.update');
+    Route::put('/users/edit', 'update')->name('users.update');
 });
 
 Route::controller(groupMessageController::class)->middleware('auth')->group(function(){

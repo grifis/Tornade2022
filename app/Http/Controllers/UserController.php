@@ -48,6 +48,9 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'max:50'],
+            'age' => [],
+            'university' => [],
+            'one_word' => [],
         ]);
 
         $user = Auth::user();
