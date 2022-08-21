@@ -25,6 +25,7 @@ class User extends Authenticatable
         'age',
         'university',
         'one_word',
+        'icon_path',
     ];
 
     /**

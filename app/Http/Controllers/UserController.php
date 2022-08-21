@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\User;
+use Cloudinary;
 
 class UserController extends Controller
 {
@@ -52,7 +53,10 @@ class UserController extends Controller
             'university' => [],
             'one_word' => [],
         ]);
-
+        if($request->file('icon_path')){
+            $uploadedFileUrl = Cloudinary::upload($request->file('icon_path')->getRealPath())->getSecurePath();
+            $validated += ['icon_path' => $uploadedFileUrl];
+        }
         $user = Auth::user();
         $user->fill($validated)->save();
         return redirect('/users/' . $user->id);

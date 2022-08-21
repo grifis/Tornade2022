@@ -13,7 +13,7 @@ const Index = (props) => {
                             <div className="flex items-center gap-2">
                                 <div className="w-10 h-10 shrink-0 bg-gray-100 rounded-full overflow-hidden">
                                     <img
-                                        src="https://images.unsplash.com/photo-1611898872015-0571a9e38375?auto=format&q=75&fit=crop&w=64"
+                                        src={event.user.icon_path}
                                         loading="lazy" alt="Photo by Brock Wegner"
                                         className="w-full h-full object-cover object-center"/>
                                 </div>

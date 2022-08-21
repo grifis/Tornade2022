@@ -21,7 +21,6 @@ class UserSeeder extends Seeder
             'age' => '19',
             'university' => '早稲田大学',
             'one_word' => 'よろしくお願いします。',
-            'icon_path' => null,
             'email' => 'yamada@yamada',
             'email_verified_at' => now(),
             'password' => bcrypt('yamayama'), // password

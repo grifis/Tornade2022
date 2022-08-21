@@ -18,6 +18,12 @@ const Show = (props) => {
                 <Link href={route("events.index")} className="text-blue-600">
                     一覧へ戻る
                 </Link>
+                <div className="w-48 h-48 shrink-0 bg-gray-100 rounded-full overflow-hidden mx-auto mb-8">
+                    <img
+                        src={user.icon_path}
+                        loading="lazy" alt="Photo by Brock Wegner"
+                        className="w-full h-full object-cover object-center"/>
+                </div>
                 <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold text-center mb-4 md:mb-6">{user.name}</h1>
                 <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold text-center mb-4 md:mb-6">年齢：{user.age}</h1>
                 <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold text-center mb-4 md:mb-6">大学：{user.university}</h1>

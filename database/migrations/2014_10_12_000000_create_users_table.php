@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('age')->nullable();
             $table->string('university')->nullable();
             $table->string('one_word')->nullable();
-            $table->string('icon_path')->nullable();
+            $table->string('icon_path')->default('https://res.cloudinary.com/dxn30zcfs/image/upload/v1661060958/712e65b68b3db426ad0e5aebfddecfcb_qmzhg8.webp');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
