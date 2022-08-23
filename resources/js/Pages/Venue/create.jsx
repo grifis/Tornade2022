@@ -4,12 +4,13 @@ import Base from "@/Layouts/Base";
 import {LoadScript} from '@react-google-maps/api';
 
 const Create = () => {
-    const { data, setData, post, errors, processing, transform } = useForm({
+    const { data, setData, post, errors, processing, progress,  } = useForm({
         name: "",
         address: "",
         description: "",
         lat: '',
         lng: '',
+        images:{}
     });
     const { googleApiKey } = usePage().props;
 
@@ -73,6 +74,16 @@ const Create = () => {
                                 {data.description}
                             </textarea>
                             {errors.description && <div className='text-red-600'>{errors.description}</div>}
+                        </div>
+                        <div className="mb-4">  {/*アイコン*/}
+                            <label htmlFor="images" className="block text-gray-700 text-sm font-bold mb-2">参考画像</label>
+                            <input id='images' type="file" multiple onChange={e => setData('images', e.target.files)} />
+                            {progress && (
+                                <progress value={progress.percentage} max="100">
+                                    {progress.percentage}%
+                                </progress>
+                            )}
+                            {errors.images && <div className='text-red-600'>{errors.images}</div>}
                         </div>
 
                         <button

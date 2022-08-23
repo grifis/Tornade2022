@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venue;
+use App\Models\VenueImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Cloudinary;
 
 class VenueController extends Controller
 {
@@ -18,7 +20,7 @@ class VenueController extends Controller
 
     public function show(Venue $venue)
     {
-        $venue = Venue::with(['owner'])->find($venue->id);
+        $venue = Venue::with(['owner', 'venue_images'])->find($venue->id);
         return Inertia::render('Venue/show', [
             'venue' => $venue
         ]);
@@ -41,8 +43,17 @@ class VenueController extends Controller
 
         $owner = Auth::guard('owner')->user();   //ログインしているownerユーザーを取得
         $validated += ['owner_id' => $owner->id];   //owner_idを配列に加える
+        $venue = Venue::create($validated);
 
-        Venue::create($validated);
+        if($request->file('images')) {  //画像が送信された場合
+            foreach($request->file('images') as $image){
+                $venue_image = new VenueImage;
+                $uploadedFileUrl = Cloudinary::upload($image->getRealPath())->getSecurePath(); //Cloudinaryに送信
+                $venue_image->venue_id = $venue->id;
+                $venue_image->image_path = $uploadedFileUrl;
+                $venue_image->save();
+            }
+        }
         return redirect()->route('venues.index');
     }
 }

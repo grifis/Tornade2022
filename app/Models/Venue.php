@@ -22,4 +22,9 @@ class Venue extends Model
     {
         return $this->belongsTo('App\Models\Owner');
     }
+
+    public function venue_images()
+    {
+        return $this->hasMany('App\Models\VenueImage');
+    }
 }

@@ -26,9 +26,9 @@ const Create = () => {
                 <div className="w-full max-w-xs mx-auto">
                     <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">プロフィール編集</h2>
                     <form onSubmit={onSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                        <div className="mb-4">  {/*名前*/}
+                        <div className="mb-4">  {/*アイコン*/}
                             <label htmlFor="icon_path" className="block text-gray-700 text-sm font-bold mb-2">アイコン</label>
-                            <input id='icon_path' type="file"  onChange={e => setData('icon_path', e.target.files[0])} />
+                            <input id='icon_path' type="file" onChange={e => setData('icon_path', e.target.files[0])} />
                             {progress && (
                                 <progress value={progress.percentage} max="100">
                                     {progress.percentage}%
