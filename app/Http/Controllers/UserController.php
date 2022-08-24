@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\User;
+use Cloudinary;
 
 class UserController extends Controller
 {
@@ -14,6 +16,12 @@ class UserController extends Controller
             'users' => User::all()
         ]);
     }
+
+    public function show(User $user)
+    {
+        return Inertia::render('User/show', [
+            'user' => $user
+        ]);    }
 
     public function create()
     {
@@ -30,5 +38,27 @@ class UserController extends Controller
 
         User::create($validated);
         return redirect()->route('user.index');
+    }
+
+    public function edit()
+    {
+        return Inertia::render('User/edit');
+    }
+
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'max:50'],
+            'age' => [],
+            'university' => [],
+            'one_word' => [],
+        ]);
+        if($request->file('icon_path')){
+            $uploadedFileUrl = Cloudinary::upload($request->file('icon_path')->getRealPath())->getSecurePath();
+            $validated += ['icon_path' => $uploadedFileUrl];
+        }
+        $user = Auth::user();
+        $user->fill($validated)->save();
+        return redirect('/users/' . $user->id);
     }
 }

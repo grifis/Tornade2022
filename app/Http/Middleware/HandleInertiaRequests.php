@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
 
@@ -36,7 +37,8 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user(),
+                'user' => Auth::guard('web')->user(),
+                'owner' => Auth::guard('owner')->user(),
             ],
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
@@ -44,6 +46,7 @@ class HandleInertiaRequests extends Middleware
                 ]);
             },
             'appName' => config('app.name'),
+            'googleApiKey' => config('googleapi.google_api_key')
         ],
         );
     }

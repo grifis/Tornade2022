@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'name',
+        'age',
+        'university',
+        'one_word',
+        'icon_path',
     ];
 
     /**
@@ -42,8 +47,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts()
+    public function events()
     {
-        return $this->hasMany('App\Models\Post');
+        return $this->hasMany('App\Models\Event');
+    }
+
+    public function operators()
+    {
+        return $this->hasMany('App\Models\Operator');
+    }
+
+    public function groupMessages()
+    {
+        return $this->hasMany('App\Models\GroupMessage');
     }
 }
