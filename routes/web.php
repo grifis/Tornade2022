@@ -55,6 +55,7 @@ Route::controller(EventController::class)->prefix('events')->group(function(){
 
 Route::controller(VenueController::class)->prefix('venues')->group(function(){
     Route::get('/', 'index')->name('venues.index');
+    Route::get('/apply','apply')->name('venues.apply');
     Route::get('/{venue}', 'show')->name('events.show');
 });
 

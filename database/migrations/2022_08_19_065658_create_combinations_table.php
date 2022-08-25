@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('event_id')->unsigned();
             $table->integer('venue_id')->unsigned();
+            $table->string('message');
             $table->timestamps();
         });
     }
