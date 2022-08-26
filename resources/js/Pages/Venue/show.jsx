@@ -8,11 +8,19 @@ const EnhancedSwipeableViews = autoPlay(SwipeableViews);
 
 const Show = (props) => {
     const { googleApiKey } = usePage().props;
-    const {venue} = props;
+    const {venue, isPlanner} = props;
     const containerStyle = {
-        width: "400px",
-        height: "400px",
+        width: "500px",
+        height: "500px",
     };
+    const applyButton = (
+        <Link
+            href={route("venues.apply")}
+            className="bg-gradient-to-br from-green-300 to-green-800 hover:bg-gradient-to-tl text-white rounded px-4 py-2"
+        >
+            開催地に申し込む
+        </Link>
+    );
 
     return <>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
@@ -24,6 +32,18 @@ const Show = (props) => {
                     一覧へ戻る
                 </Link>
                 <EnhancedSwipeableViews enableMouseEvents interval={2000}>
+                    <div>
+                        <LoadScript googleMapsApiKey={`${googleApiKey}`} >
+                            <GoogleMap
+                                mapContainerStyle={containerStyle}
+                                center={{
+                                    lat: Number(venue.lat),
+                                    lng: Number(venue.lng),
+                                }}
+                                zoom={17}
+                            ></GoogleMap>
+                        </LoadScript>
+                    </div>
                     {venue.venue_images.map((image) => (
                         <div>
                             <img src={image.image_path}/>
@@ -35,18 +55,9 @@ const Show = (props) => {
                 <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold mb-4 md:mb-6 text-center">詳細：{venue.description}</h1>
                 <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold mb-4 md:mb-6 text-center">運営団体：{venue.owner.name}</h1>
             </div>
-        </div>
-        <div>
-            <LoadScript googleMapsApiKey={`${googleApiKey}`} >
-                <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    center={{
-                        lat: Number(venue.lat),
-                        lng: Number(venue.lng),
-                    }}
-                    zoom={17}
-                ></GoogleMap>
-            </LoadScript>
+            <div className='text-center'>
+                {isPlanner && applyButton}
+            </div>
         </div>
     </>;
 };

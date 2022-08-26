@@ -1,7 +1,6 @@
 import Header from "../Components/Header";
 import Navigation from "../Components/Navigation";
 import { useEffect } from "react";
-import { Head } from "@inertiajs/inertia-react";
 
 const Base = ({ children }) => {
     useEffect(() => {

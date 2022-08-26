@@ -20,9 +20,12 @@ class VenueController extends Controller
 
     public function show(Venue $venue)
     {
+        $user_events = Auth::guard('web')->user()->events()->get();  //ログインしたユーザーが企画したイベントを取得
+        $is_planner = $user_events->isNotEmpty();
         $venue = Venue::with(['owner', 'venue_images'])->find($venue->id);
         return Inertia::render('Venue/show', [
-            'venue' => $venue
+            'venue' => $venue,
+            'isPlanner' => $is_planner
         ]);
     }
 
@@ -55,5 +58,10 @@ class VenueController extends Controller
             }
         }
         return redirect()->route('venues.index');
+    }
+
+    public function apply()
+    {
+        return Inertia::render('Venue/application');
     }
 }
