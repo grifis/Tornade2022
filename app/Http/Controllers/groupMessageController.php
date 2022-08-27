@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageCreated;
 use App\Models\Event;
 use App\Models\GroupMessage;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class groupMessageController extends Controller
 
         $user = Auth::user();   //ログインしているユーザーを取得
         $validated += ['user_id' => $user->id];   //ユーザーidを配列に加える
-        GroupMessage::create($validated);
+        $message = GroupMessage::create($validated);
+        event(new MessageCreated($message));
     }
 }

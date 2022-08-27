@@ -1,10 +1,12 @@
 import {Head, Link, useForm, usePage} from "@inertiajs/inertia-react";
 import Base from "@/Layouts/Base";
+import {useEffect} from "react";
 
 const Index = (props) => {
+    const { url, component } = usePage();
     const {event, messages} = props;
     const { auth } = usePage().props;
-    const { data, setData, post, errors, processing } = useForm({
+    const { data, setData, get, post, errors, processing } = useForm({
         message: "",
         event_id: `${event.id}`,
     });
@@ -15,13 +17,21 @@ const Index = (props) => {
         setData("message", '');
     }
 
+    useEffect(() => {
+        Echo.channel('chat').listen('MessageCreated', e => {
+            get(url);
+        });
+        const obj = document.getElementById('chat');
+        obj.scrollTop = obj.scrollHeight;
+    }, [])
+
     return (
         <div className="bg-white py-6 sm:py-8 lg:py-12">
             <div className="max-w-screen-md px-4 md:px-8 mx-auto">
                 <Head title="メッセージ"></Head>
                 <div className="w-full mx-auto">
                     <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">メッセージ</h2>
-                    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <div id='chat' className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-auto h-96 hidden-scrollbar">
                         {messages.map((message) => {
                             const someone = (
                                 <div className='flex'>
