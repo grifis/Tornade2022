@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             OwnerSeeder::class,
             EventSeeder::class,
+            VenueSeeder::class,
 
         ]);
         // \App\Models\User::factory(10)->create();

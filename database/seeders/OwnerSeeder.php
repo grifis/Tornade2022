@@ -17,10 +17,10 @@ class OwnerSeeder extends Seeder
     public function run()
     {
         DB::table('owners')->insert([
-            'name' => '箱根温泉支援団体',
-            'email' => 'hakone@hakone',
+            'name' => '伊東観光支援教会',
+            'email' => 'shizu@shizu',
             'email_verified_at' => now(),
-            'password' => bcrypt('hakohako'), // password
+            'password' => bcrypt('shizushizu'), // password
             'remember_token' => Str::random(10),
         ]);
     }
