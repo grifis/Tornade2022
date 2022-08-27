@@ -17,6 +17,8 @@ const Base = ({ children }) => {
     let BodyArea 
     if (url === "/events/create") {
         BodyArea = "eventCreateBodyArea"
+    } else if (url === "/events/1"){
+        BodyArea = "eventShowBodyArea"
     } else if (url === "/events") {
         BodyArea = "eventBodyArea"
     } else {

@@ -16,8 +16,7 @@ const Create = () => {
     }
 
     return (
-        <div className="py-6 sm:py-8 lg:py-12">
-            <div className="max-w-screen-md px-4 md:px-8 mx-auto">
+            <div className="max-w-screen-md px-4 md:px-8 mx-auto border border-black">
                 <Head title="イベント企画作成"></Head>
                 <div className="w-full max-w-xs mx-auto">
                     <div className="relative mb-2">
@@ -109,9 +108,11 @@ const Create = () => {
                             </label>
                             <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
                         </div>
-                        <div className="pl-2 flex items-center gap-2">
-                            <input type="checkbox" className="rounded" />この作品を公開する
-                        </div>
+                        <label className="my-checkbox">
+                        <input type="checkbox" className="check-mark"/>
+                        <span className="checkMark"></span>
+                        この作品を公開する
+                        </label>
 
                         <div className="flex justify-end pr-2">
                             <button
@@ -125,7 +126,6 @@ const Create = () => {
                     </form>
                 </div>
             </div>
-        </div>
     );
 };
 
