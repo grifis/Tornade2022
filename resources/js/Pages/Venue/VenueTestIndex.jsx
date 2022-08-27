@@ -2,6 +2,7 @@ import React from "react";
 import Favorite from "../../Components/img/Favorite.png";
 import Handshake from "../../Components/img/Handshake.png";
 import PartyBallon from "../../Components/img/Party Balloon.png";
+import { Link } from "@inertiajs/inertia-react";
 
 export default function VenueTestIndex(props) {
     return (
@@ -14,7 +15,7 @@ export default function VenueTestIndex(props) {
                     >
                         {props.status}
                     </h2>
-                    <p>{props.description}</p>
+                    <Link href={`/venues/${props.venueId}`}>{props.description}</Link>
                     <div className="flex justify-between items-center">
                         <span className="flex items-center gap-2">
                             <img src={PartyBallon} />

@@ -67,10 +67,17 @@ class UserController extends Controller
         $user = User::with('events.combinations.venue', 'operators.event.combinations')->find(Auth::id());
         $planner_events = $user->events;
         $operator_events = [];
+        $matched_venues = [];
+        foreach($planner_events as $event) {
+            foreach($event->combinations as $combi) {
+                array_push($matched_venues, $combi);
+            }
+        }
         foreach($user->operators as $item) {
             array_push($operator_events, $item->event);
         }
         return Inertia::render('User/chatIndex', [
+            'matchedVenues' => $matched_venues,
             'plannerEvents' => $planner_events,
             'operatorEvents' => $operator_events,
         ]);

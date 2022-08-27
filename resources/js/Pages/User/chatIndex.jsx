@@ -4,31 +4,68 @@ import Base from "@/Layouts/Base";
 
 const ChatIndex = (props) => {
     const { auth } = usePage().props;
-    const {operatorEvents, plannerEvents} = props;
+    const {matchedVenues, operatorEvents, plannerEvents} = props;
+    console.log(matchedVenues);
 
     return (
         <div className="bg-white py-6 sm:py-8 lg:py-12">
             <div className="max-w-screen-md px-4 md:px-8 mx-auto">
                 <Head title="投稿作成"></Head>
+                {matchedVenues?.map((combi) => (
+                    <div className='mb-5 bg-gray-100 px-4 py-4'>
+                        <div className="flex items-center gap-1.5">
+                            <div className="w-16 h-16 shrink-0 bg-gray-100 rounded-full overflow-hidden">
+                                <img
+                                    src='https://res.cloudinary.com/dxn30zcfs/image/upload/v1660977936/cld-sample-2.jpg'
+                                    loading="lazy"
+                                    className="w-full h-full object-cover object-center"
+                                />
+                            </div>
+                            <Link
+                                href={`/apply/messages?event_id=${combi.event_id}&venue_id=${combi.venue.id}`}
+                                className="text-blue-600"
+                            >
+                                {`${combi.venue.name.substr(0,14)}...`}
+                            </Link>
+                        </div>
+                    </div>
+                ))}
                 {operatorEvents.map((event) => (
-                    <div className='mb-5'>
-                        <Link
-                            href={`/events/messages/${event.id}`}
-                            className="bg-gradient-to-br from-green-300 to-green-800 hover:bg-gradient-to-tl text-white rounded px-4 py-2"
-                        >
-                            {event.title}
-                        </Link>
+                    <div className='mb-5 bg-gray-100 px-4 py-4'>
+                        <div className="flex items-center gap-1.5">
+                            <div className="w-16 h-16 shrink-0 bg-gray-100 rounded-full overflow-hidden">
+                                <img
+                                    src='https://res.cloudinary.com/dxn30zcfs/image/upload/v1660977936/cld-sample-2.jpg'
+                                    loading="lazy"
+                                    className="w-full h-full object-cover object-center"
+                                />
+                            </div>
+                            <Link
+                                href={`/events/messages/${event.id}`}
+                                className="text-blue-600"
+                            >
+                                {`${event.title.substr(0,14)}...`}
+                            </Link>
+                        </div>
                     </div>
                 ))}
                 {plannerEvents.map((event) => (
-                    <div className='mb-5'>
-                        {console.log(event.combinations)}
-                        <Link
-                            href={`/events/messages/${event.id}`}
-                            className="bg-gradient-to-br from-green-300 to-green-800 hover:bg-gradient-to-tl text-white rounded px-4 py-2"
-                        >
-                            {event.title}
-                        </Link>
+                    <div className='mb-5 bg-gray-100 px-4 py-4'>
+                        <div className="flex items-center gap-1.5">
+                            <div className="w-16 h-16 shrink-0 bg-gray-100 rounded-full overflow-hidden">
+                                <img
+                                    src='https://res.cloudinary.com/dxn30zcfs/image/upload/v1660977936/cld-sample-2.jpg'
+                                    loading="lazy"
+                                    className="w-full h-full object-cover object-center"
+                                />
+                            </div>
+                            <Link
+                                href={`/events/messages/${event.id}`}
+                                className="text-blue-600"
+                            >
+                                {`${event.title.substr(0,14)}...`}
+                            </Link>
+                        </div>
                     </div>
                 ))}
             </div>

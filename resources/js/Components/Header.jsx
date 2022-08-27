@@ -32,10 +32,20 @@ const Header = () => {
                 className="lg:flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-2.5 -ml-8"
             >
                 <div className="block sm:hidden flex gap-3 items-center">
-                    <BsFillBellFill size={20} color={"FB8914"} />
-                    <BsFillChatDotsFill size={20} color={"FB8914"} />
-                    <IoMdAddCircleOutline size={25} color={"FB8914"} />
-                    <CgProfile size={30} color={"FF6900"} />
+                    <Link href="">
+                        <BsFillBellFill size={20} color={"FB8914"} />
+                    </Link>
+                    <Link href="/chat/index">
+                        <BsFillChatDotsFill size={20} color={"FB8914"} />
+                    </Link>
+                    <Link href="/events/create">
+                        <IoMdAddCircleOutline size={25} color={"FB8914"} />
+                    </Link>
+                    {auth.user && (
+                        <Link href={`/users/${auth.user.id}`}>
+                            <CgProfile size={30} color={"FF6900"} />
+                        </Link>
+                    )}
                 </div>
             </form>
         </>

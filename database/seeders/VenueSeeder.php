@@ -18,7 +18,7 @@ class VenueSeeder extends Seeder
     public function run()
     {
         DB::table('venues')->insert([
-            'name' => '山田一郎',
+            'name' => '過疎化が進む伊東地域でイベントを企画して欲しい！',
             'address' => '静岡県伊東市3-9-19',
             'lat' => '34.965354837294036',
             'lng' => '139.10408803193022',

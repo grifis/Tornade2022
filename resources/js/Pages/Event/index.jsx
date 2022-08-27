@@ -25,7 +25,8 @@ const Index = (props) => {
                     <Selection title="開催時期" />
                 </div>
                 {/* 条件セレクターここまで */}
-                {console.log(props.events)}
+
+                {/* イベント一覧ここから */}
                 {props.events.map((event) => (
                     <TestIndex
                         image={Camp}
@@ -33,11 +34,12 @@ const Index = (props) => {
                         status={event.status}
                         description={event.title}
                         name={event.user.name}
+                        eventId={event.id}
+                        userId={event.user.id}
+                        iconPath={event.user.icon_path}
                     />
                 ))}
-                {/* article - start */}
 
-                {/* イベント一覧ここから */}
                 <TestIndex
                     image={Camp}
                     color="border-yellow-200"
