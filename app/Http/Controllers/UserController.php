@@ -61,4 +61,18 @@ class UserController extends Controller
         $user->fill($validated)->save();
         return redirect('/users/' . $user->id);
     }
+
+    public function chat_index()
+    {
+        $user = User::with('events.combinations.venue', 'operators.event.combinations')->find(Auth::id());
+        $planner_events = $user->events;
+        $operator_events = [];
+        foreach($user->operators as $item) {
+            array_push($operator_events, $item->event);
+        }
+        return Inertia::render('User/chatIndex', [
+            'plannerEvents' => $planner_events,
+            'operatorEvents' => $operator_events,
+        ]);
+    }
 }

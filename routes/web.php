@@ -66,6 +66,7 @@ Route::controller(VenueController::class)->prefix('venues')->group(function(){
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/users/{user}','show')->name('users.show');
+    Route::get('/chat/index', 'chat_index')->name('users.chat');
 });
 
 
