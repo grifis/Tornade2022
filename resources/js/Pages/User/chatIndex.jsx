@@ -1,6 +1,7 @@
 import {Head, useForm, usePage} from "@inertiajs/inertia-react";
 import { Link } from "@inertiajs/inertia-react";
 import Base from "@/Layouts/Base";
+import Arrow from "@/Components/img/Arrow.png";
 
 const ChatIndex = (props) => {
     const { auth } = usePage().props;
@@ -9,7 +10,16 @@ const ChatIndex = (props) => {
 
     return (
         <div className="bg-white py-6 sm:py-8 lg:py-12">
-            <div className="max-w-screen-md px-4 md:px-8 mx-auto">
+            <div className="max-w-screen-md md:px-8 mx-auto">
+                <div className='flex mb-3'>
+                    <Link href='/events'>
+                        <img
+                            src={Arrow}
+                            className="bg-white p-1 border border-2 border-gray-900 rounded-full"
+                        />
+                    </Link>
+                    <p className='mx-auto pr-2'>メッセージ</p>
+                </div>
                 <Head title="投稿作成"></Head>
                 {matchedVenues?.map((combi) => (
                     <div className='mb-5 bg-gray-100 px-4 py-4'>

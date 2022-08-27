@@ -13,3 +13,9 @@
 .eventCreateBodyArea{
   background-color:rgba(182,183,195,0.3);
 }
+
+.chatBodyArea{
+    background-color:white;
+    border-top: 1px solid black;
+    border-radius: 20px;
+}

@@ -14,15 +14,22 @@ const Base = ({ children }) => {
 
     const { url } = usePage();
 
-    let BodyArea 
+    let BodyArea
     if (url === "/events/create") {
         BodyArea = "eventCreateBodyArea"
     } else if (url === "/events/1"){
         BodyArea = "eventShowBodyArea"
     } else if (url === "/events") {
         BodyArea = "eventBodyArea"
+    } else if (url === "/chat/index") {
+        BodyArea = "chatBodyArea"
     } else {
         BodyArea = "venueBodyArea"
+    }
+
+    let isNav = '';
+    if (!(url === "/events") && !(url === "/venues")) {
+        isNav = 'hidden';
     }
 
 
@@ -31,7 +38,7 @@ const Base = ({ children }) => {
             <div className="px-4">
                 <Header />
             </div>
-            <div className="hidden">
+            <div className={isNav}>
                 <Navigation />
             </div>
             <div
