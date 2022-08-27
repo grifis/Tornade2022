@@ -27,4 +27,14 @@ class Venue extends Model
     {
         return $this->hasMany('App\Models\VenueImage');
     }
+
+    public function applyMessages()
+    {
+        return $this->hasMany('App\Models\ApplyMessage');
+    }
+
+    public function combinations()
+    {
+        return $this->hasMany('App\Models\Combination');
+    }
 }

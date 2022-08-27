@@ -17,13 +17,24 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => '山田一郎',
+            'name' => 'Hiro',
             'age' => '19',
             'university' => '早稲田大学',
             'one_word' => 'よろしくお願いします。',
-            'email' => 'yamada@yamada',
+            'email' => 'hiro@hiro',
             'email_verified_at' => now(),
-            'password' => bcrypt('yamayama'), // password
+            'password' => bcrypt('hirohiro'), // password
+            'remember_token' => Str::random(10),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'りゅう',
+            'age' => '21',
+            'university' => '慶應大学',
+            'one_word' => 'よろしくお願いします。',
+            'email' => 'ryu@ryu',
+            'email_verified_at' => now(),
+            'password' => bcrypt('ryuryuryu'), // password
             'remember_token' => Str::random(10),
         ]);
     }

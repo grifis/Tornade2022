@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApplyMessage;
+use App\Models\Combination;
 use App\Models\Venue;
 use App\Models\VenueImage;
 use Illuminate\Http\Request;
@@ -18,14 +20,30 @@ class VenueController extends Controller
         ]);
     }
 
-    public function show(Venue $venue)
+    public function show(Venue $venue, ApplyMessage $applyMessage)
     {
-        $user_events = Auth::guard('web')->user()->events()->get();  //ログインしたユーザーが企画したイベントを取得
-        $is_planner = $user_events->isNotEmpty();
+        $is_planner = false;
+        $is_applied = false;
+        $event_id = null;
+        $user = Auth::guard('web')->user();
+        if($user) {  //学生ユーザーだった場合
+            $is_planner = $user->events()->get()->isNotEmpty();
+        }
+        if($is_planner) {  //企画者だった場合
+            foreach($venue->combinations as $item){  //開催地とマッチしたイベント一覧を取り出す
+                if($item->event->user_id === $user->id){  //イベントのuser_idと企画者のidが一致した場合
+                    $event_id = $item->event->id;
+                    $is_applied = true;
+                    continue;
+                }
+            }
+        }
         $venue = Venue::with(['owner', 'venue_images'])->find($venue->id);
         return Inertia::render('Venue/show', [
             'venue' => $venue,
-            'isPlanner' => $is_planner
+            'isPlanner' => $is_planner,
+            'isApplied' => $is_applied,
+            'eventId' => $event_id,
         ]);
     }
 
@@ -60,8 +78,24 @@ class VenueController extends Controller
         return redirect()->route('venues.index');
     }
 
-    public function apply()
+    public function apply(Venue $venue)
     {
-        return Inertia::render('Venue/application');
+        $user_events = Auth::guard('web')->user()->events()->get();
+        return Inertia::render('Venue/application', [
+            'userEvents' => $user_events,
+            'venue' => $venue,
+        ]);
+    }
+
+    public function apply_store(Venue $venue, Request $request)
+    {
+        $validated = $request->validate([   //バリデーション適用後の配列
+            'event_id' => ['required'],
+            'message' => ['required'],
+        ]);
+
+        $validated += ['venue_id' => $venue->id];   //venue_idを配列に加える
+        $combi = Combination::create($validated);
+        return redirect()->route('apply.index', ['event_id' => $combi->event_id, 'venue_id' => $combi->venue_id]);
     }
 }
