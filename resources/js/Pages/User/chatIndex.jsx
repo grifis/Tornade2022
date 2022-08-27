@@ -12,12 +12,12 @@ const ChatIndex = (props) => {
         <div className="bg-white py-6 sm:py-8 lg:py-12">
             <div className="max-w-screen-md md:px-8 mx-auto">
                 <div className='flex mb-3'>
-                    <button>
+                    <Link href='/events'>
                         <img
                             src={Arrow}
                             className="bg-white p-1 border border-2 border-gray-900 rounded-full"
                         />
-                    </button>
+                    </Link>
                     <p className='mx-auto pr-2'>メッセージ</p>
                 </div>
                 <Head title="投稿作成"></Head>
