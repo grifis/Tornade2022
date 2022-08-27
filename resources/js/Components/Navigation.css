@@ -1,0 +1,28 @@
+.tabStyle{
+  border-bottom: 1px solid black;
+}
+
+.eventTabFocusStyle {
+    background-color: #ffda4b;
+    border-top: 1px solid black;
+}
+
+.venueTabFocusStyle {
+    background-color: #AEF470;
+    border-top: 1px solid black;
+}
+
+.inputSpace {
+    position: relative;
+}
+
+.inputSpace input {
+    padding: 3px 0 3px 2em;
+}
+
+.searchIcon {
+    position: absolute;
+    display: inline-block;
+    top: 22px;
+    left: 10px;
+}
