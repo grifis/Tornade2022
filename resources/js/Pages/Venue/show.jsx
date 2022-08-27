@@ -8,17 +8,28 @@ const EnhancedSwipeableViews = autoPlay(SwipeableViews);
 
 const Show = (props) => {
     const { googleApiKey } = usePage().props;
-    const {venue, isPlanner} = props;
+    const {venue, isPlanner, isApplied, eventId} = props;
+    console.log(props);
     const containerStyle = {
         width: "500px",
         height: "500px",
     };
+
     const applyButton = (
         <Link
-            href={route("venues.apply")}
+            href={`/venues/apply/${venue.id}`}
             className="bg-gradient-to-br from-green-300 to-green-800 hover:bg-gradient-to-tl text-white rounded px-4 py-2"
         >
             開催地に申し込む
+        </Link>
+    );
+
+    const chatButton = (
+        <Link
+            href={`/apply/messages?event_id=${eventId}&venue_id=${venue.id}`}
+            className="bg-gradient-to-br from-green-300 to-green-800 hover:bg-gradient-to-tl text-white rounded px-4 py-2"
+        >
+            チャット
         </Link>
     );
 
@@ -56,7 +67,8 @@ const Show = (props) => {
                 <h1 className="text-gray-800 text-2xl sm:text-3xl font-bold mb-4 md:mb-6 text-center">運営団体：{venue.owner.name}</h1>
             </div>
             <div className='text-center'>
-                {isPlanner && applyButton}
+                {isPlanner && !isApplied && applyButton}
+                {isPlanner && isApplied && chatButton}
             </div>
         </div>
     </>;

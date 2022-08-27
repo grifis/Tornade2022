@@ -2,16 +2,17 @@ import {Head, Link, useForm, usePage} from "@inertiajs/inertia-react";
 import Base from "@/Layouts/Base";
 
 const Index = (props) => {
-    const {event, messages} = props;
+    const {eventId, venueId, messages} = props;
     const { auth } = usePage().props;
     const { data, setData, post, errors, processing } = useForm({
         message: "",
-        event_id: `${event.id}`,
+        event_id: `${eventId}`,
+        venue_id: `${venueId}`,
     });
 
     function onSubmit(e) {
         e.preventDefault();
-        post("/events/messages/store");
+        post("/apply/messages");
         setData("message", '');
     }
 

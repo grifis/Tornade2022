@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Combination extends Model
+class ApplyMessage extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,11 @@ class Combination extends Model
         'event_id',
         'message',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 
     public function venue()
     {

@@ -32,4 +32,14 @@ class Event extends Model
     {
         return $this->hasMany('App\Models\GroupMessage');
     }
+
+    public function applyMessages()
+    {
+        return $this->hasMany('App\Models\ApplyMessage');
+    }
+
+    public function combinations()
+    {
+        return $this->hasMany('App\Models\Combination');
+    }
 }

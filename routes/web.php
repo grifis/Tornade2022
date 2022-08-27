@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplyMessageController;
 use App\Http\Controllers\groupMessageController;
 use App\Http\Controllers\VenueController;
 use Illuminate\Foundation\Application;
@@ -48,6 +49,9 @@ Route::controller(VenueController::class)->middleware('auth:owner')->group(funct
 });
 
 //全ユーザーが見れるルーティング
+Route::get('/apply/messages', [ApplyMessageController::class, 'index'])->name('apply.index');
+Route::post('/apply/messages', [ApplyMessageController::class, 'store'])->name('apply.store');
+
 Route::controller(EventController::class)->prefix('events')->group(function(){
     Route::get('/', 'index')->name('events.index');
     Route::get('/{event}', 'show')->name('events.show');
@@ -55,7 +59,8 @@ Route::controller(EventController::class)->prefix('events')->group(function(){
 
 Route::controller(VenueController::class)->prefix('venues')->group(function(){
     Route::get('/', 'index')->name('venues.index');
-    Route::get('/apply','apply')->name('venues.apply');
+    Route::get('/apply/{venue}','apply')->name('venues.apply');
+    Route::post('/apply/store/{venue}','apply_store')->name('venues.apply_store');
     Route::get('/{venue}', 'show')->name('events.show');
 });
 
