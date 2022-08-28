@@ -18,10 +18,12 @@ const Base = ({ children }) => {
     let BodyArea;
     if (url === "/events/create") {
         BodyArea = "eventCreateBodyArea"
-    } else if (url.substr(0,12) === "/events/show"){
+    } else if ((url.substr(0,12) === "/events/show") || (url.substr(0,12) === '/venues/show')){
         BodyArea = "eventShowBodyArea"
     } else if (url === "/events") {
         BodyArea = "eventBodyArea"
+    } else if (url.substr(0,16) === "/events/messages") {
+        BodyArea = "chatArea"
     } else if (url === "/chat/index") {
         BodyArea = "chatBodyArea"
     } else {

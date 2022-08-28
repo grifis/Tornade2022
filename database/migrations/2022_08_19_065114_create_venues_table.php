@@ -20,6 +20,8 @@ return new class extends Migration
             $table->float('lat'); //緯度
             $table->float('lng'); //経度
             $table->string('description'); //説明
+            $table->string('requirements'); //募集したいイベント
+            $table->string('phone_number');  //電話番号
             $table->integer('owner_id')->unsigned();
             $table->timestamps();
         });

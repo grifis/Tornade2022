@@ -64,8 +64,15 @@ const Show = (props) => {
                         {event.title}
                     </h1>
                     <div className="flex items-center gap-2">
-                        <img src={Vector} />
-                        <span className="text-xl">{event.user.name}</span>
+                        <div className="w-12 h-12 shrink-0 bg-gray-100 rounded-full overflow-hidden">
+                            <img
+                                src={event.user.icon_path}
+                                loading="lazy"
+                                alt="Photo by Brock Wegner"
+                                className="w-full h-full object-cover object-center"
+                            />
+                        </div>
+                        <Link href={`/users/${event.user.id}`}><span className="text-xl">{event.user.name}</span></Link>
                     </div>
                     <img src={Yukata} className="rounded" />
                     <div>
@@ -134,9 +141,24 @@ const Show = (props) => {
                         現在の運営メンバー
                     </span>
                     <div className="flex">
-                        <img src={Vector} />
-                        <img src={Vector} />
-                        <img src={Vector} />
+                        <div className="w-12 h-12 shrink-0 bg-gray-100 rounded-full overflow-hidden">
+                            <Link href={`/users/${event.user.id}`}><img
+                                src={event.user.icon_path}
+                                loading="lazy"
+                                alt="Photo by Brock Wegner"
+                                className="w-full h-full object-cover object-center"
+                            /></Link>
+                        </div>
+                        {event.operators.map((operator) => (
+                            <div className="w-12 h-12 shrink-0 bg-gray-100 rounded-full overflow-hidden">
+                                <Link href={`/users/${operator.user.id}`}><img
+                                    src={operator.user.icon_path}
+                                    loading="lazy"
+                                    alt="Photo by Brock Wegner"
+                                    className="w-full h-full object-cover object-center"
+                                /></Link>
+                            </div>
+                        ))}
                     </div>
                     <div className="flex gap-3">
                         <span className="px-1 border border-2 border-yellow-200 rounded-md">

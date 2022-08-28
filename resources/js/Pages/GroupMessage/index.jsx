@@ -1,6 +1,7 @@
 import {Head, Link, useForm, usePage} from "@inertiajs/inertia-react";
 import Base from "@/Layouts/Base";
 import {useEffect} from "react";
+import Arrow from "@/Components/img/Arrow.png";
 
 const Index = (props) => {
     const { url, component } = usePage();
@@ -26,12 +27,21 @@ const Index = (props) => {
     }, [])
 
     return (
-        <div className="bg-white py-6 sm:py-8 lg:py-12">
-            <div className="max-w-screen-md px-4 md:px-8 mx-auto">
+        <div className="py-6 sm:py-8 lg:py-12">
+            <div className="max-w-screen-md md:px-8 mx-auto">
                 <Head title="メッセージ"></Head>
                 <div className="w-full mx-auto">
-                    <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">メッセージ</h2>
-                    <div id='chat' className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-auto h-96 hidden-scrollbar">
+                    <div className='flex mb-3'>
+                        <Link href='/events'>
+                            <img
+                                src={Arrow}
+                                className="bg-white p-1 border border-2 border-gray-900 rounded-full"
+                            />
+                        </Link>
+                        <p className='mx-auto pr-2'>メッセージ</p>
+                    </div>
+                    <p className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">メッセージ</p>
+                    <div id='chat' className="rounded pt-6 pb-8 mb-4 overflow-auto h-96 hidden-scrollbar">
                         {messages.map((message) => {
                             const someone = (
                                 <div className='flex'>
@@ -57,12 +67,12 @@ const Index = (props) => {
                     </div>
                     <form onSubmit={onSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <div className="mb-4">
-                            <label htmlFor="message" className="block text-gray-700 text-sm font-bold mb-2">入力する</label>
                             <input
                                 id="message"
                                 type="text"
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 value={data.message}
+                                placeholder='メッセージを入力する'
                                 onChange={(e) => setData("message", e.target.value)}
                             />
                             {errors.message && <div className='text-red-600'>{errors.message}</div>}

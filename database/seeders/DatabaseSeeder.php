@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             OwnerSeeder::class,
             EventSeeder::class,
             VenueSeeder::class,
+            VnueImageSeeder::class,
 
         ]);
         // \App\Models\User::factory(10)->create();

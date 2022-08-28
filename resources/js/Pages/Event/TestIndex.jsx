@@ -5,6 +5,8 @@ import Gas from "../../Components/img/Gas.png";
 import { Link } from "@inertiajs/inertia-react";
 
 export default function TestIndex(props) {
+    console.log(props.operators);
+    console.log(props.description);
     return (
         <>
             <div className="bg-white rounded-lg">
@@ -26,10 +28,19 @@ export default function TestIndex(props) {
                     <div className="flex justify-between items-center">
                         <span className="flex items-center gap-2">
                             <img src={Meeting} />
-                            <h5>3</h5>
-                            <div className="absolute left-24 w-7 h-7 bg-gray-400 rounded-full"></div>
-                            <div className="absolute left-28 w-7 h-7 bg-gray-600 rounded-full"></div>
-                            <div className="absolute left-32 w-7 h-7 bg-gray-800 rounded-full"></div>
+                            <p>{props.operators?.length}</p>
+                            <div className='relative mb-6'>
+                                {props.operators?.map((operator, index) => (
+                                    <div className={`absolute left-${index*3} w-7 h-7 shrink-0 rounded-full overflow-hidden`}>
+                                        <img
+                                            src={operator.user.icon_path}
+                                            loading="lazy"
+                                            alt="Photo by Brock Wegner"
+                                            className="w-full h-full object-cover object-center"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
                         </span>
 
                         <span className="flex items-center">

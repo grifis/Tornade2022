@@ -15,7 +15,7 @@ export default function VenueTestIndex(props) {
                     >
                         {props.status}
                     </h2>
-                    <Link href={`/venues/${props.venueId}`}>{props.description}</Link>
+                    <Link href={`/venues/show/${props.venueId}`}>{props.description}</Link>
                     <div className="flex justify-between items-center">
                         <span className="flex items-center gap-2">
                             <img src={PartyBallon} />

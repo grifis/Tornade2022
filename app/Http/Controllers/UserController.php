@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApplyMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -64,13 +65,18 @@ class UserController extends Controller
 
     public function chat_index()
     {
-        $user = User::with('events.combinations.venue', 'operators.event.combinations')->find(Auth::id());
+        $user = User::with('events.combinations.venue', 'operators.event.combinations', 'events.groupMessages', 'operators.event.groupMessages')->find(Auth::id());
         $planner_events = $user->events;
         $operator_events = [];
         $matched_venues = [];
+        $matched_venues_chats = [];
         foreach($planner_events as $event) {
             foreach($event->combinations as $combi) {
                 array_push($matched_venues, $combi);
+                $venue_id = $combi->venue_id;
+                $event_id = $combi->event_id;
+                $message = ApplyMessage::where('venue_id', $venue_id)->where('event_id', $event_id)->first();
+                array_push($matched_venues_chats, $message);
             }
         }
         foreach($user->operators as $item) {
@@ -80,6 +86,7 @@ class UserController extends Controller
             'matchedVenues' => $matched_venues,
             'plannerEvents' => $planner_events,
             'operatorEvents' => $operator_events,
+            'matchedVenuesChats' => $matched_venues_chats,
         ]);
     }
 }

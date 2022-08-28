@@ -22,6 +22,7 @@ class EventSeeder extends Seeder
             'operator_requirement' => '大学に入ってから文化祭楽しんでないな、何かイベント運営に関わってみたいけどサークルに入り損ねてしまった人、オフラインでの繋がりを作りたい人などに、ぜひ一緒に運営してもらいたいと思っています！みんなで楽しい浴衣コンテストを作りませんか？',
             'conditions' => '・高校3年生〜大学生、大学院生'. PHP_EOL .'・週に1回のオンラインMTGに参加できる人'. PHP_EOL .'・開催地（静岡）に当日来れる人'. PHP_EOL .'・オフラインイベントを成功させたい！という気持ち',
             'user_id' => 1,
+            'image_path' => 'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661690000/victoriano-izquierdo-CS8Get8gGBI-unsplash_1_hhbwc9.jpg',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
@@ -31,6 +32,7 @@ class EventSeeder extends Seeder
             'description' => 'バレーボール大会します！',
             'operator_requirement' => '熱い気持ちを持った人に来てもらいたいです！',
             'conditions' => 'バレーボール経験者',
+            'image_path' => 'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661690019/nick-wojtas-KgFpXagcIn0-unsplash_c5jsnl.jpg',
             'user_id' => 2,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),

@@ -14,13 +14,13 @@ class EventController extends Controller
     public function index()
     {
         return Inertia::render('Event/index', [
-            'events' => Event::with('user')->get()
+            'events' => Event::with('user', 'operators.user')->get()
         ]);
     }
 
     public function show(Event $event, Operator $operator)
     {
-        $event = Event::with(['user', 'operators'])->find($event->id);
+        $event = Event::with(['user', 'operators.user'])->find($event->id);
         $operators_id = [$event->user_id];
         foreach($event->operators as $operator){
             array_push($operators_id, $operator->user_id);

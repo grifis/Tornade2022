@@ -73,7 +73,7 @@ const Create = () => {
                                 htmlFor="title"
                                 className="block text-gray-700 text-sm font-bold mb-2"
                             >
-                                タイトル ※15文字以内
+                                タイトル
                             </label>
                             <input
                                 id="title"

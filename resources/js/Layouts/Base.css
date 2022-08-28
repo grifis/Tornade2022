@@ -23,3 +23,11 @@
     border-top: 1px solid black;
     border-radius: 20px;
 }
+
+.chatArea{
+    background: -moz-linear-gradient(top, #fcfcac, #fcd494);
+    background: -webkit-linear-gradient(top, #fcfcac, #fcd494);
+    background: linear-gradient(to bottom, #fcfcac, #fcd494);
+    border-top: 1px solid black;
+    border-radius: 20px;
+}

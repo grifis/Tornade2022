@@ -61,7 +61,7 @@ Route::controller(VenueController::class)->prefix('venues')->group(function(){
     Route::get('/', 'index')->name('venues.index');
     Route::get('/apply/{venue}','apply')->name('venues.apply');
     Route::post('/apply/store/{venue}','apply_store')->name('venues.apply_store');
-    Route::get('/{venue}', 'show')->name('events.show');
+    Route::get('/show/{venue}', 'show')->name('events.show');
 });
 
 Route::controller(UserController::class)->group(function(){
