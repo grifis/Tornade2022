@@ -11,7 +11,7 @@ export default function TestIndex(props) {
                 <img src={props.image} className="rounded-lg"/>
                 <div className="px-4 py-4 flex flex-col gap-1">
                     <h2 className={`text-xs border-2 rounded-2xl pl-1 inline-block ${props.color}`}>{props.status}</h2>
-                    <Link href={`/events/${props.eventId}`}>{props.description}</Link>
+                    <Link href={`/events/show/${props.eventId}`}>{props.description}</Link>
                     <div className="flex items-center gap-1.5">
                         <div className="w-7 h-7 shrink-0 bg-gray-100 rounded-full overflow-hidden">
                             <img

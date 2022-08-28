@@ -4,6 +4,8 @@
 
 .eventShowBodyArea{
   background-color: white;
+    border-top: 1px solid black;
+    border-radius: 20px;
 }
 
 .venueBodyArea{
@@ -11,7 +13,9 @@
 }
 
 .eventCreateBodyArea{
-  background-color:rgba(182,183,195,0.3);
+    background-color:rgba(182,183,195,0.3);
+    border-top: 1px solid black;
+    border-radius: 20px;
 }
 
 .chatBodyArea{

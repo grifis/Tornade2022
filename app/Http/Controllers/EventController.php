@@ -7,6 +7,7 @@ use App\Models\Operator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Cloudinary;
 
 class EventController extends Controller
 {
@@ -38,12 +39,18 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([   //バリデーション適用後の配列
-            'title' => ['required', 'max:50'],
+            'title' => ['required', 'max:30'],
             'description' => ['required'],
+            'operator_requirement' => ['required'],
+            'conditions' => ['required'],
         ]);
 
         $user = Auth::user();   //ログインしているユーザーを取得
         $validated += ['user_id' => $user->id];   //ユーザーidを配列に加える
+        if($request->file('images')) {  //画像が送信された場合
+                $uploadedFileUrl = Cloudinary::upload($request->file('images')->getRealPath())->getSecurePath(); //Cloudinaryに送信
+            $validated += ['image_path' => $uploadedFileUrl];
+            }
 
         Event::create($validated);
         return redirect()->route('events.index');

@@ -16,6 +16,19 @@ class Event extends Model
         'status',
         'user_id',
         'venue_id',
+        'operator_requirement',
+        'conditions',
+        'venue_requirement',
+        'scale',
+        'season',
+        'time',
+        'comment',
+        'participation_requirements',
+        'date',
+        'headcount',
+        'entry_fee',
+        'belongings',
+        'others',
     ];
 
     public function user()

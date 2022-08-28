@@ -54,7 +54,7 @@ Route::post('/apply/messages', [ApplyMessageController::class, 'store'])->name('
 
 Route::controller(EventController::class)->prefix('events')->group(function(){
     Route::get('/', 'index')->name('events.index');
-    Route::get('/{event}', 'show')->name('events.show');
+    Route::get('/show/{event}', 'show')->name('events.show');
 });
 
 Route::controller(VenueController::class)->prefix('venues')->group(function(){

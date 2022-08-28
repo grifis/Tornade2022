@@ -9,9 +9,11 @@ import LinkIcon from "../../Components/img/Link.png";
 import Label from "../../Components/img/label.png";
 import Gas from "../../Components/img/Gas.png";
 import "./EventShow.css";
+import React from "react";
 
 const Show = (props) => {
     const { event, operatorsId } = props;
+    console.log(event);
     const { auth } = usePage().props;
 
     const { post } = useForm({});
@@ -24,16 +26,16 @@ const Show = (props) => {
     const unjoined = (
         <button
             onClick={handleClick}
-            className="text-center bg-gradient-to-br from-green-300 to-green-800 hover:bg-gradient-to-tl text-white rounded px-4 py-2"
+            className="button-right border border-black rounded-md py-4 px-1 font-bold"
         >
-            運営に加わる
+            運営に参加する
         </button>
     );
 
     const joined = (
-        <Link href={`/events/messages/${event.id}`} className="text-blue-600">
-            グループチャットを見にいく
-        </Link>
+            <button className="bg-green-400 border border-black rounded-md py-4 px-1 font-bold">
+                <Link href={`/events/messages/${event.id}`}>チャットを見る</Link>
+            </button>
     );
 
     return (
@@ -69,49 +71,53 @@ const Show = (props) => {
                     <div>
                         <h2 className="font-bold">イベントについて</h2>
                         <p className="text-gray-800 mb-4 md:mb-6 font-bold">
-                            {event.description}
+                            {event.description.split('\n').map(t => (<p>{t}</p>))}
                         </p>
                     </div>
                     <div>
                         <h2 className="font-bold">募集したい人</h2>
                         <p className="font-bold flex">
-                            大学に入ってから文化祭楽しんでないな、何かイベント運営に関わってみたいけどサークルに入り損ねてしまった人、オフラインでの繋がりを作りたい人などに、ぜひ一緒に運営してもらいたいと思っています！みんなで楽しい浴衣コンテストを作りませんか？
+                            {event.operator_requirement.split('\n').map(t => (<p>{t}</p>))}
                         </p>
                     </div>
                     <div>
                         <h2 className="font-bold">応募条件</h2>
                         <ul className="font-bold">
-                            <li>・高校3年生〜大学生、大学院生</li>
-                            <li>・週に1回のオンラインMTGに参加できる人</li>
-                            <li>・開催地（静岡）に当日来れる人</li>
-                            <li>
-                                ・オフラインイベントを成功させたい！という気持ち
-                            </li>
+                            {event.conditions.split('\n').map(t => (<p>{t}</p>))}
                         </ul>
                     </div>
                     <div className="flex gap-2">
-                        <img src={Vector} className="w-1/4" />
+                        <div className="w-12 h-12 shrink-0 bg-gray-100 rounded-full overflow-hidden">
+                            <img
+                                src={event.user.icon_path}
+                                loading="lazy"
+                                alt="Photo by Brock Wegner"
+                                className="w-full h-full object-cover object-center"
+                            />
+                        </div>
                         <div>
                             <h3 className="font-bold">{event.user.name}</h3>
                             <p className="font-bold text-xs">
-                                ひとことひとことひとことひとことひとことひとことひとことひとことひとことひとこと
+                                {event.user.one_word}
                             </p>
                         </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <button className="border border-black rounded-md py-4 px-1 font-bold">
-                            プロフィール
+                            <Link href={`/users/${event.user.id}`}>プロフィール</Link>
                         </button>
-                        <button className="button-right border border-black rounded-md py-4 px-1 font-bold">
-                            運営に参加する
-                        </button>
+                        {operatorsId.includes(auth.user?.id)
+                            ? joined
+                            : unjoined}
                     </div>
                     <div className="flex justify-between">
                         <div className="flex gap-2">
-                            <img
+                            <a href={`https://twitter.com/intent/tweet?text=一緒に${event.title}に参加しよう！詳しくは下のリンクから見てね！&url=https://tornade2022.herokuapp.com/events/${event.id}&hashtags=Tornado2022`} class="twitter-share-button" data-show-count="false">
+                                <img
                                 src={Twitter}
                                 className="w-10 h-10 border border-black rounded-full p-2"
-                            />
+                                />
+                            </a>
                             <img
                                 src={LinkIcon}
                                 className="w-10 h-10 border border-black rounded-full p-2"
@@ -119,7 +125,7 @@ const Show = (props) => {
                             <img src={Label} className="w-10 h-10 p-2" />
                         </div>
                         <div className="flex items-center">
-                            <span className="font-bold text-xs">応募する</span>
+                            <span className="font-bold text-xs">応援する</span>
                             <img src={Gas} />
                             <span>15</span>
                         </div>
@@ -148,11 +154,6 @@ const Show = (props) => {
                         <span className="px-1 border border-2 border-yellow-200 rounded-md">
                             #静岡
                         </span>
-                    </div>
-                    <div className="text-center">
-                        {operatorsId.includes(auth.user?.id)
-                            ? joined
-                            : unjoined}
                     </div>
                 </div>
             </div>

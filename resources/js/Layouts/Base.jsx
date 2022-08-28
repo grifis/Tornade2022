@@ -14,10 +14,11 @@ const Base = ({ children }) => {
 
     const { url } = usePage();
 
-    let BodyArea
+    console.log(url.substr(0,12));
+    let BodyArea;
     if (url === "/events/create") {
         BodyArea = "eventCreateBodyArea"
-    } else if (url === "/events/1"){
+    } else if (url.substr(0,12) === "/events/show"){
         BodyArea = "eventShowBodyArea"
     } else if (url === "/events") {
         BodyArea = "eventBodyArea"
