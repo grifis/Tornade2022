@@ -31,7 +31,7 @@ const Index = (props) => {
         <div className="py-6 sm:py-8 lg:py-12">
             <div className="max-w-screen-md md:px-8 mx-auto">
                 <Head title="メッセージ"></Head>
-                <div className="w-full mx-auto">
+                <div className="w-full mx-auto h-screen">
                     <div className='flex mb-3'>
                         <Link href='/events'>
                             <img
@@ -75,7 +75,7 @@ const Index = (props) => {
                                 placeholder='メッセージを入力する'
                                 onChange={(e) => setData("message", e.target.value)}
                             />
-                            <button type="submit" className='absolute right-9 top-8 text-blue-600'>
+                            <button type="submit" className='absolute right-9 top-9 text-blue-600'>
                                 <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                                     <rect width="31" height="31" fill="url(#pattern0)"/>
                                     <defs>
