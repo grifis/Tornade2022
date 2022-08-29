@@ -31,7 +31,7 @@ const Index = (props) => {
         <div className="py-6 sm:py-8 lg:py-12">
             <div className="max-w-screen-md md:px-8 mx-auto">
                 <Head title="メッセージ"></Head>
-                <div className="w-full mx-auto h-screen">
+                <div className="w-full mx-auto">
                     <div className='flex mb-3'>
                         <Link href='/events'>
                             <img
@@ -65,8 +65,8 @@ const Index = (props) => {
                             }
                         })}
                     </div>
-                    <form onSubmit={onSubmit} className="absolute bottom-0 rounded px-8 pt-6 pb-8 mb-4 text-input-width">
-                        <div className="mb-4">
+                    <form onSubmit={onSubmit} className="footer rounded px-8 pt-6 text-input-width">
+                        <div className="">
                             <input
                                 id="message"
                                 type="text"
