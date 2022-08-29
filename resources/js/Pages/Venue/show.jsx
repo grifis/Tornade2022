@@ -21,7 +21,7 @@ const Show = (props) => {
     };
 
     const applyButton = (
-        <button className="bg-yellow-300 border border-black rounded-md py-4 px-1 font-bold w-2/4 my-4">
+        <button className="bg-green-300 border border-black rounded-md py-4 px-1 font-bold w-2/4 my-4">
             <Link href={`/venues/apply/${venue.id}`}>
                 ここに企画を提案する
             </Link>
@@ -46,7 +46,7 @@ const Show = (props) => {
         <div className="bg-white py-6 sm:py-8 lg:py-12">
             <div className="max-w-screen-md px-4 md:px-8 mx-auto">
                 <Link
-                    href={route("events.index")}
+                    href={route("venues.index")}
                     className="text-blue-600"
                 >
                     <img

@@ -39,5 +39,41 @@ class UserSeeder extends Seeder
             'password' => bcrypt('ryuryuryu'), // password
             'remember_token' => Str::random(10),
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'しゅか',
+            'age' => '21',
+            'university' => '慶應大学',
+            'one_word' => 'よろしくお願いします。',
+            'icon_path' => 'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661794835/publicdomainq-0055242amj_acor4i.jpg',
+            'email' => 'rshu@ryu',
+            'email_verified_at' => now(),
+            'password' => bcrypt('ryuryuryu'), // password
+            'remember_token' => Str::random(10),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'blue',
+            'age' => '21',
+            'university' => '慶應大学',
+            'one_word' => 'よろしくお願いします。',
+            'icon_path' => 'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661794913/Blue_Hawaii_vuf7mc.jpg',
+            'email' => 'ryulkll@ryu',
+            'email_verified_at' => now(),
+            'password' => bcrypt('ryuryuryu'), // password
+            'remember_token' => Str::random(10),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'らら',
+            'age' => '21',
+            'university' => '慶應大学',
+            'one_word' => 'よろしくお願いします。',
+            'icon_path' => 'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661795000/publicdomainq-0045460djw_wcgt18.jpg',
+            'email' => 'ryulkll@ryulsf',
+            'email_verified_at' => now(),
+            'password' => bcrypt('ryuryuryu'), // password
+            'remember_token' => Str::random(10),
+        ]);
     }
 }

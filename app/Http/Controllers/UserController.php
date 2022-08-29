@@ -65,7 +65,7 @@ class UserController extends Controller
 
     public function chat_index()
     {
-        $user = User::with('events.combinations.venue', 'operators.event.combinations', 'events.groupMessages', 'operators.event.groupMessages')->find(Auth::id());
+        $user = User::with('events.combinations.venue.venue_images', 'operators.event.combinations', 'events.groupMessages', 'operators.event.groupMessages')->find(Auth::id());
         $planner_events = $user->events;
         $operator_events = [];
         $matched_venues = [];

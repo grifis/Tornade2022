@@ -28,7 +28,7 @@ const Navigation = () => {
                 <Link
                     href="/events"
                     className={`${
-                        url === "/events" ? eventTabFocusStyle : tabStyle
+                        (url === "/events") || (url.substr(0, 8) === "/events?") ? eventTabFocusStyle : tabStyle
                     } text-center py-2`}
                 >
                     イベントを見る
@@ -36,7 +36,7 @@ const Navigation = () => {
                 <Link
                     href="/venues"
                     className={`${
-                        url === "/venues" ? venueTabFocusStyle : tabStyle
+                        (url === "/venues") || (url.substr(0,8) === '/venues?') ? venueTabFocusStyle : tabStyle
                     } text-center py-2`}
                 >
                     開催地を見る

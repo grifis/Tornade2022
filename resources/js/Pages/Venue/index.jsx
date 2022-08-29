@@ -27,7 +27,7 @@ const Index = (props) => {
                 {/* イベント一覧ここから */}
                 {props.venues.map((venue) => (
                     <VenueTestIndex
-                        image={Camp}
+                        image={venue.venue_images[0]?.image_path}
                         color="border-yellow-200"
                         status="東京"
                         description={venue.name}

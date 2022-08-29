@@ -11,10 +11,16 @@ use Cloudinary;
 
 class EventController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $word = $request->input('word');
+        $events = Event::query();
+        if($word){
+            $events->where('title', 'like', "%$word%")->orWhere('description', 'like', "%$word%");
+        }
+        $events = $events->with('user', 'operators.user')->latest()->get();
         return Inertia::render('Event/index', [
-            'events' => Event::with('user', 'operators.user')->get()
+            'events' => $events
         ]);
     }
 

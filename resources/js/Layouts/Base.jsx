@@ -16,13 +16,13 @@ const Base = ({ children }) => {
 
     console.log(url.substr(0,12));
     let BodyArea;
-    if (url === "/events/create") {
+    if ((url === "/events/create") || (url.substr(0,14) === "/venues/apply/")) {
         BodyArea = "eventCreateBodyArea"
     } else if ((url.substr(0,12) === "/events/show") || (url.substr(0,12) === '/venues/show')){
         BodyArea = "eventShowBodyArea"
-    } else if (url === "/events") {
+    } else if ((url === "/events") || (url.substr(0, 8) === "/events?") ) {
         BodyArea = "eventBodyArea"
-    } else if (url.substr(0,16) === "/events/messages") {
+    } else if ((url.substr(0,16) === "/events/messages") || (url.substr(0,15) === '/apply/messages') ) {
         BodyArea = "chatArea"
     } else if (url === "/chat/index") {
         BodyArea = "chatBodyArea"
@@ -31,7 +31,7 @@ const Base = ({ children }) => {
     }
 
     let isNav = '';
-    if (!(url === "/events") && !(url === "/venues")) {
+    if (!((url === "/events") || (url.substr(0, 8) === "/events?")) && !((url === "/venues") || (url.substr(0,8) === "/venues?"))) {
         isNav = 'hidden';
     }
 

@@ -2,11 +2,11 @@ import React from "react";
 import Vector from "../../Components/img/Vector.png";
 import Meeting from "../../Components/img/Meeting.png";
 import Gas from "../../Components/img/Gas.png";
-import { Link } from "@inertiajs/inertia-react";
+import {Link, useForm} from "@inertiajs/inertia-react";
 
 export default function TestIndex(props) {
-    console.log(props.operators);
-    console.log(props.description);
+
+
     return (
         <>
             <div className="bg-white rounded-lg">

@@ -31,7 +31,7 @@ const ChatIndex = (props) => {
                                 <div className='pb-0.5 border-b border-black bg-red-500 rounded-lg '>
                                     <div className="w-16 h-16 shrink-0 bg-gray-100 border border-black rounded-lg overflow-hidden">
                                         <img
-                                            src='https://res.cloudinary.com/dxn30zcfs/image/upload/v1660977936/cld-sample-2.jpg'
+                                            src={combi.venue.venue_images[0]?.image_path}
                                             loading="lazy"
                                             className="w-full h-full object-cover object-center"
                                         />

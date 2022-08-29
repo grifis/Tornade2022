@@ -33,7 +33,7 @@ const Index = (props) => {
                 <Head title="メッセージ"></Head>
                 <div className="w-full mx-auto">
                     <div className='flex mb-3'>
-                        <Link href='/events'>
+                        <Link href='/chat/index'>
                             <img
                                 src={Arrow}
                                 className="bg-white p-1 border border-2 border-gray-900 rounded-full"
@@ -54,7 +54,7 @@ const Index = (props) => {
 
                             const myself = (
                                 <div className='flex'>
-                                    <p className='bg-green-100 border-2 rounded-lg mb-3 ml-auto px-4 py-2'>{message.message}</p>
+                                    <p className='orange border-2 border-orange-300 rounded-lg mb-3 ml-auto px-4 py-2'>{message.message}</p>
                                 </div>
                             )
 

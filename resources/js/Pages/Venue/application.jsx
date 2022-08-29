@@ -1,6 +1,9 @@
 import { Head, useForm } from "@inertiajs/inertia-react";
 import { Link } from "@inertiajs/inertia-react";
 import Base from "@/Layouts/Base";
+import './application.css';
+import Arrow from "@/Components/img/Arrow.png";
+import React from "react";
 
 const Create = (props) => {
     const {venue, userEvents} = props;
@@ -15,12 +18,21 @@ const Create = (props) => {
     }
 
     return (
-        <div className="bg-white py-6 sm:py-8 lg:py-12">
+        <div className="color py-6 sm:py-8 lg:py-12">
             <div className="max-w-screen-md px-4 md:px-8 mx-auto">
                 <Head title="投稿作成"></Head>
                 <div className="w-full max-w-xs mx-auto">
-                    <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">申請フォーム</h2>
-                    <form onSubmit={onSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <Link
+                        href={`/venues/show/${venue.id}`}
+                        className="text-blue-600"
+                    >
+                        <img
+                            src={Arrow}
+                            className="bg-white p-1 border border-2 border-gray-900 rounded-full"
+                        />
+                    </Link>
+                    <h2 className="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">{venue.name}</h2>
+                    <form onSubmit={onSubmit} className="color rounded px-8 pt-6 pb-8 mb-4">
                         <div className="mb-4">
                             <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">イベント</label>
                                     <select

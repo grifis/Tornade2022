@@ -13,10 +13,16 @@ use Cloudinary;
 
 class VenueController extends Controller
 {
-    public function index(Venue $venue)
+    public function index(Request $request)
     {
+        $word = $request->input('word');
+        $venues = Venue::query();
+        if($word){
+            $venues->where('name', 'like', "%$word%")->orWhere('description', 'like', "%$word%");
+        }
+        $venues = $venues->with('owner', 'venue_images')->latest()->get();
         return Inertia::render('Venue/index', [
-            'venues' => $venue->with('owner')->get()
+            'venues' => $venues
         ]);
     }
 

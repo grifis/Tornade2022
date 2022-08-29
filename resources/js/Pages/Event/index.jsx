@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/inertia-react";
+import {Link, useForm} from "@inertiajs/inertia-react";
 import Base from "@/Layouts/Base";
 import NavSearch from "../../Components/NavSearch";
 import Selection from "../../Components/Selection";
@@ -14,7 +14,7 @@ const Index = (props) => {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-8 mx-4 sm:mx-2">
                 {/* 検索ボックスここから*/}
-                <NavSearch />
+                <NavSearch/>
                 {/* 検索ボックスここまで */}
 
                 {/* 条件セレクターここから */}
@@ -29,7 +29,7 @@ const Index = (props) => {
                 {/* イベント一覧ここから */}
                 {props.events.map((event) => (
                     <TestIndex
-                        image={Camp}
+                        image={event.image_path}
                         color="border-yellow-200"
                         status={event.status}
                         description={event.title}

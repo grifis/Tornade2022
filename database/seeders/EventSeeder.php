@@ -37,5 +37,27 @@ class EventSeeder extends Seeder
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
+
+        DB::table('events')->insert([
+            'title' => '開けなかった絵画展をもう一度開きたい！同じ思いを持った人待ってます！',
+            'description' => 'バレーボール大会します！',
+            'operator_requirement' => '熱い気持ちを持った人に来てもらいたいです！',
+            'conditions' => 'バレーボール経験者',
+            'image_path' => 'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661794749/publicdomainq-0020962lsv_bhwjh5.jpg',
+            'user_id' => 3,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ]);
+
+        DB::table('events')->insert([
+            'title' => 'コロナでオンラインライブしかできなかったので、現地で対バンしたいです！設営手伝ってくれる方や、出てくれるバンド募集してます！',
+            'description' => 'バレーボール大会します！',
+            'operator_requirement' => '熱い気持ちを持った人に来てもらいたいです！',
+            'conditions' => 'バレーボール経験者',
+            'image_path' => 'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661794676/publicdomainq-0020147yqi_ykg7in.jpg',
+            'user_id' => 4,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ]);
     }
 }
