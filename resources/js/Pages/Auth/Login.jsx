@@ -41,7 +41,7 @@ export default function Login({ status, canResetPassword }) {
             <div className='text-right'>
                 <Link
                     href={'/register'}
-                    className="underline text-sm text-gray-600 hover:text-gray-900"
+                    className="text-orange-600 underline text-sm text-gray-600 hover:text-gray-900"
                 >
                     新規登録はこちら
                 </Link>
@@ -87,13 +87,13 @@ export default function Login({ status, canResetPassword }) {
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900"
+                            className="underline text-sm text-orange-600 hover:text-gray-900"
                         >
                             パスワードを忘れた方はこちら
                         </Link>
                     )}
 
-                    <Button className="ml-4" processing={processing}>
+                    <Button className="ml-4 bg-orange-400" processing={processing}>
                         ログイン
                     </Button>
                 </div>

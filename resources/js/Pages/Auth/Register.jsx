@@ -94,11 +94,11 @@ export default function Register() {
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
-                    <Link href={route('login')} className="underline text-sm text-gray-600 hover:text-gray-900">
+                    <Link href={route('login')} className="text-orange-600 underline text-sm text-gray-600 hover:text-gray-900">
                         既に登録している方はこちら
                     </Link>
 
-                    <Button className="ml-4" processing={processing}>
+                    <Button className="ml-4 bg-orange-400" processing={processing}>
                         登録
                     </Button>
                 </div>
