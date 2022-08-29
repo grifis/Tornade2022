@@ -29,5 +29,18 @@ class VenueSeeder extends Seeder
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
+
+        DB::table('venues')->insert([
+            'name' => '一緒に福島県葛尾村を盛り上げてくれませんか？',
+            'address' => '静岡県伊東市3-9-19',
+            'lat' => '34.965354837294036',
+            'lng' => '139.10408803193022',
+            'description' => "福島の中でも、山と森に囲まれた、自然豊かな土地です！毎年大学生にもインターンとしてきてもらっています！",
+            'requirements' => "素晴らしいイベントお待ちしております。",
+            'phone_number' => "034-224-9982",
+            'owner_id' => 2,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ]);
     }
 }
