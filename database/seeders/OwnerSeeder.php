@@ -23,5 +23,13 @@ class OwnerSeeder extends Seeder
             'password' => bcrypt('shizushizu'), // password
             'remember_token' => Str::random(10),
         ]);
+
+        DB::table('owners')->insert([
+            'name' => '葛尾村復興委員会',
+            'email' => 'katurao@katurao',
+            'email_verified_at' => now(),
+            'password' => bcrypt('katukatu'), // password
+            'remember_token' => Str::random(10),
+        ]);
     }
 }
