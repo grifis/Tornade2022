@@ -74,7 +74,7 @@ const Show = (props) => {
                         </div>
                         <Link href={`/users/${event.user.id}`}><span className="text-xl">{event.user.name}</span></Link>
                     </div>
-                    <img src={Yukata} className="rounded" />
+                    <img src={event.image_path} className="rounded" />
                     <div>
                         <h2 className="font-bold">イベントについて</h2>
                         <p className="text-gray-800 mb-4 md:mb-6 font-bold">
