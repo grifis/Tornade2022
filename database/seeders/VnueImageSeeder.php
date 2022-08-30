@@ -17,17 +17,17 @@ class VnueImageSeeder extends Seeder
     public function run()
     {
         DB::table('venue_images')->insert([
-            'venue_id' => 1,
+            'venue_id' => 2,
             'image_path' => 'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661701477/4205907_s_ze1g0j.jpg',
         ]);
 
         DB::table('venue_images')->insert([
-            'venue_id' => 1,
+            'venue_id' => 2,
             'image_path' => 'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661702482/main_zfp1ah.jpg',
         ]);
 
         DB::table('venue_images')->insert([
-            'venue_id' => 2,
+            'venue_id' => 1,
             'image_path' => 'https://res.cloudinary.com/dxn30zcfs/image/upload/v1661795318/202106141532555qadbl_yoen7p.jpg',
         ]);
     }
